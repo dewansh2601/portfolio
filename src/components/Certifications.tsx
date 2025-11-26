@@ -89,14 +89,15 @@ const Certifications = () => {
                   {cert.imageUrl ? (
                     <Image
                       src={cert.imageUrl}
-                      alt={cert.name}
+                      alt={`${cert.name} certification badge from ${cert.issuer}`}
                       fill
                       className="object-contain"
                       unoptimized
+                      loading="lazy"
                     />
                   ) : (
                     <div className="w-full h-full rounded-lg bg-gradient-to-br from-neon-blue/20 to-neon-purple/20 flex items-center justify-center">
-                      <FaAward className="w-16 h-16 text-neon-blue" />
+                      <FaAward className="w-16 h-16 text-neon-blue" aria-label="Certification award icon" />
                     </div>
                   )}
                 </div>
@@ -117,9 +118,10 @@ const Certifications = () => {
                       href={cert.credlyBadgeUrl}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={`View ${cert.name} certification on Credly`}
                       className="flex items-center gap-1 text-xs text-gray-400 hover:text-neon-blue transition-colors"
                     >
-                      <FaCertificate className="w-3 h-3" />
+                      <FaCertificate className="w-3 h-3" aria-hidden="true" />
                       <span>Credly</span>
                     </a>
                   )}
@@ -128,9 +130,10 @@ const Certifications = () => {
                       href={cert.verificationUrl}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={`Verify ${cert.name} certification`}
                       className="flex items-center gap-1 text-xs text-gray-400 hover:text-neon-purple transition-colors"
                     >
-                      <FaExternalLinkAlt className="w-3 h-3" />
+                      <FaExternalLinkAlt className="w-3 h-3" aria-hidden="true" />
                       <span>Verify</span>
                     </a>
                   )}

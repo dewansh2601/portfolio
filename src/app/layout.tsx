@@ -84,6 +84,53 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://images.credly.com" />
         {/* Viewport for proper mobile rendering */}
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+        {/* Structured Data for SEO */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Person',
+              name: 'Dewansh Mishra',
+              jobTitle: 'DevOps & Cloud Engineer',
+              url: 'https://dewansh2601.github.io/portfolio/',
+              sameAs: [
+                'https://github.com/dewansh2601',
+                'https://linkedin.com/in/dewansh-mishra',
+              ],
+              worksFor: {
+                '@type': 'Organization',
+                name: 'Mindbowser Inc.',
+              },
+              alumniOf: [
+                {
+                  '@type': 'EducationalOrganization',
+                  name: 'Madhav Institute of Technology and Science',
+                },
+                {
+                  '@type': 'EducationalOrganization',
+                  name: 'IACSD Pune',
+                },
+              ],
+              knowsAbout: [
+                'DevOps',
+                'Cloud Computing',
+                'AWS',
+                'Docker',
+                'Kubernetes',
+                'CI/CD',
+                'Terraform',
+                'Infrastructure as Code',
+              ],
+              email: 'dewanshmishra01@gmail.com',
+              address: {
+                '@type': 'PostalAddress',
+                addressLocality: 'Pune',
+                addressCountry: 'IN',
+              },
+            }),
+          }}
+        />
       </head>
       <body className={`${inter.variable} ${jetbrainsMono.variable} ${spaceGrotesk.variable} animated-gradient min-h-screen`}>
         {/* Main content wrapper */}

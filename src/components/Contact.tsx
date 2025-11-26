@@ -153,19 +153,20 @@ const Contact = () => {
               <div className="flex gap-4">
                 {socialLinks.map((link) => {
                   const IconComponent = iconComponents[link.icon];
-                  
+
                   return (
                     <motion.a
                       key={link.name}
                       href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={`Connect with me on ${link.name}`}
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
                       className="w-12 h-12 rounded-lg glass-card flex items-center justify-center text-gray-400 hover:text-neon-blue hover:border-neon-blue/50 transition-all duration-300 hover:shadow-neon-blue/20 hover:shadow-lg"
                       title={link.name}
                     >
-                      {IconComponent && <IconComponent className="w-5 h-5" />}
+                      {IconComponent && <IconComponent className="w-5 h-5" aria-hidden="true" />}
                     </motion.a>
                   );
                 })}

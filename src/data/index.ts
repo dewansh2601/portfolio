@@ -82,7 +82,7 @@ export const skills: Skill[] = [
   { name: 'YAML', icon: 'SiYaml', category: 'Programming & Scripting', proficiency: 90 },
 
   // Security & Monitoring
-  { name: 'Trivy', icon: 'SiAquasecurity', category: 'Security & Monitoring', proficiency: 75 },
+  { name: 'Trivy', icon: 'FaShieldAlt', category: 'Security & Monitoring', proficiency: 75 },
   { name: 'OWASP ZAP', icon: 'SiOwasp', category: 'Security & Monitoring', proficiency: 72 },
   { name: 'Git', icon: 'FaGitAlt', category: 'Security & Monitoring', proficiency: 90 },
 ];
@@ -94,7 +94,7 @@ export const projects: Project[] = [
     title: 'IP Geolocation Tracker',
     description: 'A Flask-based web application that tracks and displays geolocation information for any IP address. Features interactive maps and detailed location data.',
     tags: ['Flask', 'Python', 'REST API', 'Geolocation', 'Bootstrap'],
-    githubUrl: 'https://github.com/dewansh/ip-geolocation',
+    githubUrl: 'https://github.com/dewansh2601/ip-geolocation',
     featured: true,
   },
   {
@@ -102,7 +102,7 @@ export const projects: Project[] = [
     title: 'DNS to IP Lookup Tool',
     description: 'Command-line and web-based tool for resolving domain names to IP addresses with additional DNS record information.',
     tags: ['Python', 'DNS', 'CLI', 'Flask', 'Network'],
-    githubUrl: 'https://github.com/dewansh/dns-lookup',
+    githubUrl: 'https://github.com/dewansh2601/dns-lookup',
     featured: true,
   },
   {
@@ -110,7 +110,7 @@ export const projects: Project[] = [
     title: 'CI/CD Pipeline Templates',
     description: 'Collection of production-ready CI/CD pipeline templates for various tech stacks including React, Java, Python with integrated security scanning.',
     tags: ['GitHub Actions', 'Jenkins', 'Docker', 'Trivy', 'OWASP ZAP'],
-    githubUrl: 'https://github.com/dewansh/cicd-templates',
+    githubUrl: 'https://github.com/dewansh2601/cicd-templates',
     featured: true,
   },
   {
@@ -118,7 +118,7 @@ export const projects: Project[] = [
     title: 'Infrastructure Automation',
     description: 'Terraform modules for AWS infrastructure including VPC, EC2, S3, and security configurations with HIPAA compliance considerations.',
     tags: ['Terraform', 'AWS', 'IaC', 'VPC', 'Security'],
-    githubUrl: 'https://github.com/dewansh/terraform-aws',
+    githubUrl: 'https://github.com/dewansh2601/terraform-aws',
     featured: true,
   },
   {
@@ -126,7 +126,7 @@ export const projects: Project[] = [
     title: 'Kubernetes Deployment Manifests',
     description: 'Production-ready Kubernetes manifests and Helm charts for deploying microservices with proper resource limits and health checks.',
     tags: ['Kubernetes', 'Helm', 'Docker', 'Microservices'],
-    githubUrl: 'https://github.com/dewansh/k8s-manifests',
+    githubUrl: 'https://github.com/dewansh2601/k8s-manifests',
     featured: false,
   },
   {
@@ -134,7 +134,7 @@ export const projects: Project[] = [
     title: 'Monitoring Stack Setup',
     description: 'Complete monitoring solution using Prometheus, Grafana, and AlertManager for container and infrastructure monitoring.',
     tags: ['Prometheus', 'Grafana', 'Docker', 'Monitoring'],
-    githubUrl: 'https://github.com/dewansh/monitoring-stack',
+    githubUrl: 'https://github.com/dewansh2601/monitoring-stack',
     featured: false,
   },
 ];
@@ -143,7 +143,7 @@ export const projects: Project[] = [
 export const experiences: Experience[] = [
   {
     id: 'mindbowser',
-    period: 'June 2025 - Present',
+    period: 'June 2024 - Present',
     title: 'Associate DevOps Engineer',
     company: 'Mindbowser Inc.',
     location: 'Pune, India',
@@ -171,20 +171,14 @@ export const certifications: Certification[] = [
     verificationUrl: 'https://www.credly.com/badges/ebaecc63-a038-4949-bcc7-4bfc81aa70ba/public_url',
     imageUrl: 'https://images.credly.com/size/340x340/images/00634f82-b07f-4bbd-a6bb-53de397fc3a6/image.png',
   },
-  {
-    id: 'nptel-cloud',
-    name: 'Cloud Computing',
-    issuer: 'NPTEL',
-    date: '2023',
-    imageUrl: '/certifications/image.png',
-  },
+  // Add more certifications here when you have the image URLs
 ];
 
 // Social links
 export const socialLinks: SocialLink[] = [
   {
     name: 'GitHub',
-    url: 'https://github.com/dewansh',
+    url: 'https://github.com/dewansh2601',
     icon: 'FaGithub',
   },
   {
@@ -193,13 +187,8 @@ export const socialLinks: SocialLink[] = [
     icon: 'FaLinkedin',
   },
   {
-    name: 'Twitter',
-    url: 'https://twitter.com/dewansh',
-    icon: 'FaTwitter',
-  },
-  {
     name: 'Email',
-    url: 'mailto:dewansh.mishra@example.com',
+    url: 'mailto:dewanshmishra01@gmail.com',
     icon: 'FaEnvelope',
   },
 ];

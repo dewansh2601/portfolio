@@ -23,8 +23,8 @@ const DevOpsCube = dynamic(() => import('./DevOpsCube'), {
 });
 
 // Import icons
-import { 
-  FaAws, FaDocker, FaLinux, FaPython, FaGitAlt 
+import {
+  FaAws, FaDocker, FaLinux, FaPython, FaGitAlt, FaShieldAlt
 } from 'react-icons/fa';
 import {
   SiKubernetes, SiTerraform, SiJenkins, SiGithubactions,
@@ -38,6 +38,7 @@ const iconComponents: { [key: string]: React.ElementType } = {
   FaLinux,
   FaPython,
   FaGitAlt,
+  FaShieldAlt,
   SiKubernetes,
   SiTerraform,
   SiJenkins,

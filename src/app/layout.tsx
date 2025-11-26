@@ -50,6 +50,9 @@ export const metadata: Metadata = {
     'Infrastructure as Code',
   ],
   authors: [{ name: 'Dewansh Mishra' }],
+  icons: {
+    icon: '/portfolio/favicon.svg',
+  },
   openGraph: {
     title: 'Dewansh Mishra | DevOps & Cloud Engineer',
     description: 'Portfolio showcasing DevOps & Cloud Engineering expertise',
@@ -76,8 +79,6 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <head>
-        {/* Favicon */}
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         {/* Resource hints for better performance */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

@@ -75,47 +75,52 @@ const Skills = () => {
     setCursorPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
   };
 
-  // GSAP Parallax effects
+  // Optimized GSAP Parallax effects - reduced scrub for better performance
   useEffect(() => {
     if (!ref.current) return;
 
+    // Check for reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
     const ctx = gsap.context(() => {
-      // Parallax effect on DevOps cube
+      // Simplified parallax effect on DevOps cube
       if (cubeRef.current) {
         gsap.fromTo(
           cubeRef.current,
-          { y: 150, scale: 0.8, opacity: 0 },
+          { y: 100, opacity: 0 },
           {
             y: 0,
-            scale: 1,
             opacity: 1,
             scrollTrigger: {
               trigger: cubeRef.current,
               start: 'top bottom',
               end: 'center center',
-              scrub: 1,
+              scrub: 0.5, // Reduced scrub value for better performance
             },
           }
         );
       }
 
-      // Animate skill categories
-      gsap.utils.toArray('.skill-category').forEach((category: any, index) => {
+      // Batch animate skill categories for performance
+      const categories = gsap.utils.toArray('.skill-category');
+      if (categories.length > 0) {
         gsap.fromTo(
-          category,
-          { y: 80, opacity: 0 },
+          categories,
+          { y: 50, opacity: 0 },
           {
             y: 0,
             opacity: 1,
+            stagger: 0.1,
             scrollTrigger: {
-              trigger: category,
-              start: 'top bottom-=100',
-              end: 'top center',
-              scrub: 1,
+              trigger: ref.current,
+              start: 'top center',
+              end: 'center center',
+              scrub: 0.5,
             },
           }
         );
-      });
+      }
     }, ref);
 
     return () => ctx.revert();
@@ -271,26 +276,14 @@ const Skills = () => {
                           </motion.span>
                         </div>
 
-                        {/* Proficiency indicator (animated bar) */}
+                        {/* Proficiency indicator (animated bar) - optimized */}
                         <div className="absolute bottom-0 left-0 right-0 h-1 bg-dark-600 rounded-b-2xl overflow-hidden">
                           <motion.div
                             initial={{ width: 0 }}
                             animate={isInView ? { width: `${skill.proficiency}%` } : {}}
-                            transition={{ delay: 0.5 + index * 0.1, duration: 0.8 }}
-                            className="h-full bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink relative"
-                          >
-                            <motion.div
-                              animate={{
-                                x: ['-100%', '100%'],
-                              }}
-                              transition={{
-                                duration: 2,
-                                repeat: Infinity,
-                                ease: 'linear',
-                              }}
-                              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
-                            />
-                          </motion.div>
+                            transition={{ delay: 0.3 + index * 0.05, duration: 0.6 }}
+                            className="h-full bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink"
+                          />
                         </div>
                       </motion.div>
                     );

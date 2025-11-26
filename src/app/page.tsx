@@ -15,13 +15,8 @@ import Certifications from '@/components/Certifications';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 
-// Dynamic import for Three.js components to avoid SSR issues
+// Dynamic import for Three.js components with lazy loading for performance
 const ThreeBackground = dynamic(() => import('@/components/ThreeBackground'), {
-  ssr: false,
-  loading: () => null,
-});
-
-const SkillsSphere = dynamic(() => import('@/components/SkillsSphere'), {
   ssr: false,
   loading: () => null,
 });

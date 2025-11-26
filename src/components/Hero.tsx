@@ -20,6 +20,7 @@ import {
 } from 'react-icons/si';
 import { aboutData } from '@/data';
 
+// Lazy load FloatingCodeSnippets after initial render for better LCP
 const FloatingCodeSnippets = dynamic(() => import('./FloatingCodeSnippets'), {
   ssr: false,
   loading: () => null,
@@ -38,15 +39,13 @@ const iconComponents: { [key: string]: React.ElementType } = {
   FaPython,
 };
 
-// Floating icon data with positions
+// Optimized floating icon data - reduced from 7 to 5 for better performance
 const floatingIconsData = [
   { Icon: FaAws, position: 'top-[15%] left-[10%]', delay: 0, color: 'text-orange-400' },
   { Icon: FaDocker, position: 'top-[20%] right-[15%]', delay: 0.5, color: 'text-blue-400' },
   { Icon: SiKubernetes, position: 'bottom-[35%] left-[8%]', delay: 1, color: 'text-blue-500' },
-  { Icon: FaLinux, position: 'top-[45%] right-[10%]', delay: 1.5, color: 'text-yellow-400' },
-  { Icon: SiTerraform, position: 'bottom-[25%] right-[18%]', delay: 2, color: 'text-purple-400' },
-  { Icon: SiJenkins, position: 'top-[65%] left-[12%]', delay: 2.5, color: 'text-red-400' },
-  { Icon: FaPython, position: 'bottom-[18%] left-[25%]', delay: 3, color: 'text-yellow-300' },
+  { Icon: SiTerraform, position: 'bottom-[25%] right-[18%]', delay: 1.5, color: 'text-purple-400' },
+  { Icon: FaPython, position: 'top-[65%] left-[12%]', delay: 2, color: 'text-yellow-300' },
 ];
 
 const Hero = () => {
@@ -54,20 +53,24 @@ const Hero = () => {
   const contentRef = useRef<HTMLDivElement>(null);
   const codeSnippetsRef = useRef<HTMLDivElement>(null);
 
-  // GSAP Parallax effects
+  // Optimized GSAP Parallax effects
   useEffect(() => {
     if (!heroRef.current || !contentRef.current) return;
 
+    // Check for reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
     const ctx = gsap.context(() => {
-      // Parallax effect on hero content
+      // Optimized parallax effect on hero content
       gsap.to(contentRef.current, {
-        y: 200,
+        y: 150,
         opacity: 0,
         scrollTrigger: {
           trigger: heroRef.current,
           start: 'top top',
           end: 'bottom top',
-          scrub: 1,
+          scrub: 0.5, // Reduced for better performance
         },
       });
 
@@ -79,24 +82,25 @@ const Hero = () => {
             trigger: heroRef.current,
             start: 'bottom center',
             end: 'bottom top',
-            scrub: 1,
+            scrub: 0.5,
           },
         });
       }
 
-      // Parallax effect on floating icons
-      gsap.utils.toArray('.floating-icon').forEach((icon: any, index) => {
-        gsap.to(icon, {
-          y: (index + 1) * 50,
-          rotation: (index % 2 === 0 ? 1 : -1) * 15,
+      // Batch animate floating icons for better performance
+      const icons = gsap.utils.toArray('.floating-icon');
+      if (icons.length > 0) {
+        gsap.to(icons, {
+          y: '+=100',
+          rotation: '+=10',
           scrollTrigger: {
             trigger: heroRef.current,
             start: 'top top',
             end: 'bottom top',
-            scrub: 1,
+            scrub: 0.5,
           },
         });
-      });
+      }
     }, heroRef);
 
     return () => ctx.revert();
@@ -134,15 +138,14 @@ const Hero = () => {
     },
   };
 
-  // Floating animation for icons
+  // Simplified floating animation for better performance
   const floatVariants = {
     animate: (delay: number) => ({
-      y: [0, -20, 0],
-      rotate: [0, 5, 0],
+      y: [0, -15, 0],
       transition: {
-        duration: 6,
+        duration: 5,
         repeat: Infinity,
-        ease: 'easeInOut',
+        ease: 'linear',
         delay,
       },
     }),
@@ -159,45 +162,32 @@ const Hero = () => {
         <FloatingCodeSnippets />
       </div>
 
-      {/* Animated gradient orbs in background */}
+      {/* Optimized gradient orbs - reduced from 3 to 2 for better performance */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
           animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-          className="absolute -top-40 -left-40 w-80 h-80 bg-neon-blue/20 rounded-full blur-3xl"
-        />
-        <motion.div
-          animate={{
-            scale: [1, 1.3, 1],
-            opacity: [0.2, 0.4, 0.2],
+            scale: [1, 1.15, 1],
+            opacity: [0.25, 0.4, 0.25],
           }}
           transition={{
             duration: 10,
             repeat: Infinity,
-            ease: 'easeInOut',
-            delay: 2,
+            ease: 'linear',
           }}
-          className="absolute -bottom-40 -right-40 w-96 h-96 bg-neon-purple/20 rounded-full blur-3xl"
+          className="absolute -top-40 -left-40 w-80 h-80 bg-neon-blue/20 rounded-full blur-3xl will-change-transform"
         />
         <motion.div
           animate={{
-            scale: [1, 1.1, 1],
-            opacity: [0.15, 0.3, 0.15],
+            scale: [1, 1.2, 1],
+            opacity: [0.2, 0.35, 0.2],
           }}
           transition={{
             duration: 12,
             repeat: Infinity,
-            ease: 'easeInOut',
-            delay: 4,
+            ease: 'linear',
+            delay: 2,
           }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-neon-pink/10 rounded-full blur-3xl"
+          className="absolute -bottom-40 -right-40 w-96 h-96 bg-neon-purple/20 rounded-full blur-3xl will-change-transform"
         />
       </div>
 

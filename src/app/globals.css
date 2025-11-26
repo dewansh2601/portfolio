@@ -199,12 +199,39 @@
   }
 }
 
+/* Reduced motion preferences for accessibility and performance */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Disable heavy animations */
+  .animated-gradient {
+    animation: none;
+    background: #0a0a0f;
+  }
+
+  .shimmer {
+    animation: none;
+  }
+
+  /* Disable parallax effects */
+  .particle-bg {
+    background-image: none;
+  }
+}
+
 /* Print styles */
 @media print {
   body {
     @apply bg-white text-black;
   }
-  
+
   .glass-card {
     @apply bg-gray-100 border-gray-300;
     box-shadow: none;

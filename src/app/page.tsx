@@ -26,6 +26,11 @@ const NetworkVisualization = dynamic(() => import('@/components/NetworkVisualiza
   loading: () => null,
 });
 
+const MouseTracker3D = dynamic(() => import('@/components/MouseTracker3D'), {
+  ssr: false,
+  loading: () => null,
+});
+
 export default function Home() {
   return (
     <>
@@ -34,6 +39,9 @@ export default function Home() {
 
       {/* Network Visualization Overlay */}
       <NetworkVisualization />
+
+      {/* Mouse Tracker 3D */}
+      <MouseTracker3D />
 
       {/* Fixed Navigation */}
       <Navbar />

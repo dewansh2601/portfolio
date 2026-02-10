@@ -21,17 +21,28 @@ const MouseTracker3D = () => {
 
   useEffect(() => {
     setMounted(true);
+    let rafId = 0;
 
     const handleMouseMove = (e: MouseEvent) => {
       const { clientX, clientY } = e;
 
-      // Update cursor position
-      mouseX.set(clientX - 100);
-      mouseY.set(clientY - 100);
+      if (rafId) return;
+
+      // Throttle updates to animation frames to reduce main-thread pressure.
+      rafId = window.requestAnimationFrame(() => {
+        mouseX.set(clientX - 100);
+        mouseY.set(clientY - 100);
+        rafId = 0;
+      });
     };
 
     window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      if (rafId) {
+        window.cancelAnimationFrame(rafId);
+      }
+    };
   }, [mouseX, mouseY]);
 
   if (!mounted) return null;

@@ -14,6 +14,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import dynamic from 'next/dynamic';
 import { skills } from '@/data';
 import { SkillCategory } from '@/types';
+import { useDevicePerformance } from '@/hooks/useDevicePerformance';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -63,10 +64,13 @@ const Skills = () => {
   const cubeRef = useRef(null);
   const cubeContainerRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const { isMobile, reducedEffects } = useDevicePerformance();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
+  const shouldRenderCube = isInView && !isMobile && !reducedEffects;
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!shouldRenderCube) return;
     if (!cubeContainerRef.current) return;
     const rect = cubeContainerRef.current.getBoundingClientRect();
     const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
@@ -186,22 +190,31 @@ const Skills = () => {
             ref={cubeContainerRef}
             onMouseMove={handleMouseMove}
             style={{
-              transform: `perspective(1000px) rotateX(${mousePosition.y * 2}deg) rotateY(${mousePosition.x * 2}deg)`,
+              transform: shouldRenderCube
+                ? `perspective(1000px) rotateX(${mousePosition.y * 2}deg) rotateY(${mousePosition.x * 2}deg)`
+                : 'none',
             }}
             className="relative mb-12 transition-transform duration-200 ease-out"
           >
-            {/* Mouse tracking glow */}
-            <motion.div
-              className="absolute w-96 h-96 rounded-full bg-neon-blue/10 blur-3xl pointer-events-none"
-              animate={{
-                x: cursorPosition.x - 192,
-                y: cursorPosition.y - 192,
-              }}
-              transition={{ type: 'spring', stiffness: 150, damping: 20 }}
-            />
-
             <div ref={cubeRef}>
-              <DevOpsCube />
+              {shouldRenderCube ? (
+                <>
+                  {/* Mouse tracking glow */}
+                  <motion.div
+                    className="absolute w-96 h-96 rounded-full bg-neon-blue/10 blur-3xl pointer-events-none"
+                    animate={{
+                      x: cursorPosition.x - 192,
+                      y: cursorPosition.y - 192,
+                    }}
+                    transition={{ type: 'spring', stiffness: 150, damping: 20 }}
+                  />
+                  <DevOpsCube />
+                </>
+              ) : (
+                <div className="h-[260px] lg:h-[320px] rounded-2xl border border-white/10 bg-dark-800/40 flex items-center justify-center">
+                  <p className="text-sm text-gray-400">3D preview disabled for smoother performance on this device.</p>
+                </div>
+              )}
             </div>
           </motion.div>
         </motion.div>

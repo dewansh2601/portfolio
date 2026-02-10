@@ -5,20 +5,24 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { Points, PointMaterial, OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
 
-function StarField() {
+interface ThreeBackgroundProps {
+  quality?: 'high' | 'low';
+}
+
+function StarField({ particleCount }: { particleCount: number }) {
   const ref = useRef<THREE.Points>(null);
 
   // Generate random star positions
   const particles = useMemo(() => {
     const temp = [];
-    for (let i = 0; i < 5000; i++) {
+    for (let i = 0; i < particleCount; i++) {
       const x = (Math.random() - 0.5) * 100;
       const y = (Math.random() - 0.5) * 100;
       const z = (Math.random() - 0.5) * 100;
       temp.push(x, y, z);
     }
     return new Float32Array(temp);
-  }, []);
+  }, [particleCount]);
 
   useFrame((state, delta) => {
     if (ref.current) {
@@ -107,25 +111,30 @@ function FloatingGeometry() {
   );
 }
 
-export default function ThreeBackground() {
+export default function ThreeBackground({ quality = 'high' }: ThreeBackgroundProps) {
+  const isLowQuality = quality === 'low';
+
   return (
     <div className="fixed inset-0 -z-10">
       <Canvas
         camera={{ position: [0, 0, 10], fov: 75 }}
-        gl={{ antialias: true, alpha: true }}
+        dpr={isLowQuality ? [1, 1.2] : [1, 1.6]}
+        gl={{ antialias: !isLowQuality, alpha: true, powerPreference: 'high-performance' }}
       >
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} intensity={1} />
-        <StarField />
+        <StarField particleCount={isLowQuality ? 1200 : 2500} />
         <FloatingGeometry />
-        <OrbitControls
-          enableZoom={false}
-          enablePan={false}
-          autoRotate
-          autoRotateSpeed={0.5}
-          maxPolarAngle={Math.PI / 2}
-          minPolarAngle={Math.PI / 2}
-        />
+        {!isLowQuality && (
+          <OrbitControls
+            enableZoom={false}
+            enablePan={false}
+            autoRotate
+            autoRotateSpeed={0.4}
+            maxPolarAngle={Math.PI / 2}
+            minPolarAngle={Math.PI / 2}
+          />
+        )}
       </Canvas>
     </div>
   );

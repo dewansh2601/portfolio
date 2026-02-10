@@ -64,8 +64,7 @@ const Hero = () => {
     const ctx = gsap.context(() => {
       // Optimized parallax effect on hero content
       gsap.to(contentRef.current, {
-        y: 150,
-        opacity: 0,
+        y: 120,
         scrollTrigger: {
           trigger: heroRef.current,
           start: 'top top',
@@ -210,6 +209,7 @@ const Hero = () => {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
+        style={{ opacity: 1 }}
         className="relative z-10 text-center px-4 max-w-5xl mx-auto"
       >
         {/* Greeting */}

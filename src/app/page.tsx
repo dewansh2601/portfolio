@@ -7,17 +7,22 @@
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
-import Skills from '@/components/Skills';
+import DevOpsFlow from '@/components/DevOpsFlow';
+import TechArsenal from '@/components/TechArsenal';
 import Projects from '@/components/Projects';
+import InfraStatus from '@/components/InfraStatus';
 import Experience from '@/components/Experience';
 import Certifications from '@/components/Certifications';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import VisualEffectsLayer from '@/components/VisualEffectsLayer';
+import PageIntro from '@/components/PageIntro';
 
 export default function Home() {
   return (
     <>
+      <PageIntro />
+
       {/* Device-aware visual effects (3D and cursor layers) */}
       <VisualEffectsLayer />
 
@@ -27,8 +32,10 @@ export default function Home() {
       {/* Main Content Sections */}
       <Hero />
       <About />
-      <Skills />
+      <DevOpsFlow />
+      <TechArsenal />
       <Projects />
+      <InfraStatus />
       <Experience />
       <Certifications />
       <Contact />

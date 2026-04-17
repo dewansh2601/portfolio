@@ -15,6 +15,7 @@ import {
   FaGithub, FaLinkedin, FaTwitter, FaEnvelope, 
   FaPaperPlane, FaMapMarkerAlt 
 } from 'react-icons/fa';
+import AnimatedHeading from './AnimatedHeading';
 
 // Icon mapping for social links
 const iconComponents: { [key: string]: React.ElementType } = {
@@ -90,11 +91,10 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="py-20 md:py-32 relative overflow-hidden"
+      className="story-section py-20 md:py-32 relative overflow-hidden"
       ref={ref}
     >
-      {/* Background decoration */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-neon-blue/5 to-transparent" />
+
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
@@ -104,7 +104,7 @@ const Contact = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="section-heading">Get In Touch</h2>
+          <AnimatedHeading text="Get In Touch" />
           <p className="text-gray-400 max-w-2xl mx-auto">
             Have a project in mind or want to discuss DevOps solutions? Let's connect!
           </p>

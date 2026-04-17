@@ -12,6 +12,7 @@ import { useRef } from 'react';
 import { certifications } from '@/data';
 import { FaCertificate, FaExternalLinkAlt, FaAward } from 'react-icons/fa';
 import Image from 'next/image';
+import AnimatedHeading from './AnimatedHeading';
 
 const Certifications = () => {
   const ref = useRef(null);
@@ -43,7 +44,7 @@ const Certifications = () => {
   return (
     <section
       id="certifications"
-      className="py-20 md:py-32 relative overflow-hidden"
+      className="story-section py-20 md:py-32 relative overflow-hidden"
       ref={ref}
     >
       {/* Background decoration */}
@@ -57,7 +58,7 @@ const Certifications = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="section-heading">Certifications</h2>
+          <AnimatedHeading text="Certifications" />
           <p className="text-gray-400 max-w-2xl mx-auto">
             Professional certifications validating my cloud and DevOps expertise.
           </p>

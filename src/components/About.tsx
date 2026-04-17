@@ -15,6 +15,7 @@ import { aboutData } from '@/data';
 import { FaMapMarkerAlt, FaEnvelope, FaGraduationCap } from 'react-icons/fa';
 import AnimatedTerminal from './AnimatedTerminal';
 import dynamic from 'next/dynamic';
+import AnimatedHeading from './AnimatedHeading';
 
 const HolographicTerminal = dynamic(() => import('./HolographicTerminal'), {
   ssr: false,
@@ -131,11 +132,10 @@ const About = () => {
   return (
     <section
       id="about"
-      className="py-20 md:py-32 relative overflow-hidden"
+      className="story-section py-20 md:py-32 relative overflow-hidden"
       ref={ref}
     >
-      {/* Background decoration */}
-      <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-neon-purple/5 to-transparent" />
+
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -145,7 +145,7 @@ const About = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="section-heading">About Me</h2>
+          <AnimatedHeading text="About Me" />
           <p className="text-gray-400 max-w-2xl mx-auto">
             Get to know more about my background, journey, and what drives me as a DevOps engineer.
           </p>

@@ -4,44 +4,27 @@
 // single-page portfolio application
 // ============================================
 
-import dynamic from 'next/dynamic';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
-import Skills from '@/components/Skills';
+import DevOpsFlow from '@/components/DevOpsFlow';
+import TechArsenal from '@/components/TechArsenal';
 import Projects from '@/components/Projects';
+import InfraStatus from '@/components/InfraStatus';
 import Experience from '@/components/Experience';
 import Certifications from '@/components/Certifications';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
-
-// Dynamic import for Three.js components with lazy loading for performance
-const ThreeBackground = dynamic(() => import('@/components/ThreeBackground'), {
-  ssr: false,
-  loading: () => null,
-});
-
-const NetworkVisualization = dynamic(() => import('@/components/NetworkVisualization'), {
-  ssr: false,
-  loading: () => null,
-});
-
-const MouseTracker3D = dynamic(() => import('@/components/MouseTracker3D'), {
-  ssr: false,
-  loading: () => null,
-});
+import VisualEffectsLayer from '@/components/VisualEffectsLayer';
+import PageIntro from '@/components/PageIntro';
 
 export default function Home() {
   return (
     <>
-      {/* 3D Background */}
-      <ThreeBackground />
+      <PageIntro />
 
-      {/* Network Visualization Overlay */}
-      <NetworkVisualization />
-
-      {/* Mouse Tracker 3D */}
-      <MouseTracker3D />
+      {/* Device-aware visual effects (3D and cursor layers) */}
+      <VisualEffectsLayer />
 
       {/* Fixed Navigation */}
       <Navbar />
@@ -49,8 +32,10 @@ export default function Home() {
       {/* Main Content Sections */}
       <Hero />
       <About />
-      <Skills />
+      <DevOpsFlow />
+      <TechArsenal />
       <Projects />
+      <InfraStatus />
       <Experience />
       <Certifications />
       <Contact />

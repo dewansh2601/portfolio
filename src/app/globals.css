@@ -1,29 +1,48 @@
 /* ============================================
    Global Styles - Dewansh Mishra Portfolio
-   Dark theme with neon accents
+   Terminal Theme + Animated Moving Grid BG
    ============================================ */
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* CSS Variables for consistent theming */
+/* ─── CSS Variables ──────────────────────────── */
 :root {
-  --color-neon-blue: #00d4ff;
-  --color-neon-purple: #a855f7;
-  --color-neon-pink: #f472b6;
-  --color-dark-900: #0a0a0f;
-  --color-dark-800: #12121a;
-  --color-dark-700: #1a1a24;
-  --gradient-neon: linear-gradient(135deg, var(--color-neon-blue) 0%, var(--color-neon-purple) 100%);
+  --terminal-green: #22c55e;
+  --terminal-green-bright: #4ade80;
+  --terminal-green-dim: rgba(34,197,94,0.5);
+  --terminal-white: rgba(255,255,255,0.92);
+  --terminal-dim: rgba(255,255,255,0.45);
+  --terminal-muted: rgba(255,255,255,0.2);
+  --terminal-border: rgba(255,255,255,0.10);
+  --terminal-border-bright: rgba(255,255,255,0.20);
+  --terminal-bg: #030303;
+  --terminal-bg-card: #080808;
+  --terminal-bg-hover: #0f0f0f;
 
-  /* Font families */
-  --font-heading: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
-  --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+  /* Keep these for compat with Tailwind class refs */
+  --color-neon-blue: #22c55e;
+  --color-neon-purple: #4ade80;
+  --color-neon-pink: #86efac;
+  --color-dark-900: #030303;
+  --color-dark-800: #080808;
+  --color-dark-700: #0f0f0f;
+
+  --gradient-neon: linear-gradient(135deg, #22c55e 0%, #4ade80 100%);
+  --surface-glow-a: rgba(34,197,94,0.06);
+  --surface-glow-b: rgba(34,197,94,0.04);
+  --surface-glow-c: rgba(34,197,94,0.03);
+
+  /* Grid dimensions */
+  --grid-size: 56px;
+
+  --font-heading: var(--font-courier-prime), 'Courier New', Courier, monospace;
+  --font-body:    var(--font-courier-prime), 'Courier New', Courier, monospace;
+  --font-mono:    var(--font-courier-prime), 'Courier New', Courier, monospace;
 }
 
-/* Base styles */
+/* ─── Base ─────────────────────────────────── */
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -31,209 +50,310 @@
   }
 
   body {
-    @apply bg-dark-900 text-white font-body antialiased;
+    color: var(--terminal-white);
+    font-family: var(--font-courier-prime), 'Courier New', Courier, monospace;
+    background-color: var(--terminal-bg);
     overflow-x: hidden;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
   }
 
-  /* Custom scrollbar */
-  ::-webkit-scrollbar {
-    width: 8px;
-  }
+  /* Grid BG is handled by Three.js GridBackground component */
+  /* body::before intentionally left empty */
 
-  ::-webkit-scrollbar-track {
-    @apply bg-dark-800;
-  }
-
+  /* Custom scrollbar — terminal green */
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: var(--terminal-bg); }
   ::-webkit-scrollbar-thumb {
-    @apply bg-neon-blue/50 rounded-full;
+    background: var(--terminal-green);
+    border-radius: 0;
   }
-
-  ::-webkit-scrollbar-thumb:hover {
-    @apply bg-neon-blue/70;
-  }
-
-  /* Selection color */
-  ::selection {
-    @apply bg-neon-purple/30 text-white;
-  }
+  ::-webkit-scrollbar-thumb:hover { background: var(--terminal-green-bright); }
+  ::selection { background: rgba(34,197,94,0.25); color: #fff; }
 }
 
-/* Component styles */
+/* ─── Components ────────────────────────────── */
 @layer components {
-  /* Glassmorphism card */
+
+  /* ═══ TERMINAL CARD ═══ */
   .glass-card {
-    @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    background: var(--terminal-bg-card);
+    border: 1px solid var(--terminal-border);
+    border-radius: 4px;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.25s ease, background 0.25s ease;
+  }
+  .glass-card::before { display: none; }
+  .glass-card:hover {
+    border-color: var(--terminal-border-bright);
+    background: var(--terminal-bg-hover);
   }
 
-  /* Neon text gradient */
+  /* Terminal card with green accent top border */
+  .terminal-card {
+    background: var(--terminal-bg-card);
+    border: 1px solid var(--terminal-border);
+    border-top: 2px solid var(--terminal-green);
+    border-radius: 0;
+    position: relative;
+    transition: border-color 0.25s ease;
+  }
+  .terminal-card:hover { border-color: rgba(34,197,94,0.4); }
+
+  /* ═══ GLASS PILL → terminal tag ═══ */
+  .glass-pill {
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: 1px solid var(--terminal-border);
+    border-radius: 2px;
+    box-shadow: none;
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+  .glass-pill:hover {
+    border-color: var(--terminal-green);
+    color: var(--terminal-green);
+    background: rgba(34,197,94,0.05);
+  }
+
+  /* ═══ TEXT GRADIENT → terminal green ═══ */
   .text-gradient {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, var(--color-neon-blue) 0%, var(--color-neon-purple) 100%);
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+    -webkit-text-fill-color: unset;
+    color: var(--terminal-green);
+    font-weight: 700;
+  }
+  .text-gradient-warm {
+    color: var(--terminal-green-bright);
+    background: none;
+    -webkit-text-fill-color: unset;
   }
 
-  /* Neon border glow */
-  .neon-border {
-    @apply border border-neon-blue/30;
-    box-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
+  /* ═══ SECTION HEADING ═══ */
+  .section-heading {
+    font-family: var(--font-mono);
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--terminal-white);
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+  }
+  .section-heading::before {
+    content: '> ';
+    color: var(--terminal-green);
+    font-weight: 400;
   }
 
-  /* Button styles */
+  /* ═══ BUTTONS ═══ */
   .btn-primary {
-    @apply px-6 py-3 rounded-lg font-semibold text-sm uppercase tracking-wider
-           bg-gradient-to-r from-neon-blue to-neon-purple
-           hover:shadow-neon-blue transition-all duration-300
-           transform hover:scale-105 active:scale-95;
+    padding: 0.625rem 1.5rem;
+    border-radius: 2px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    background: var(--terminal-green);
+    color: #000;
+    border: 1px solid var(--terminal-green);
+    box-shadow: none;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
   }
+  .btn-primary:hover {
+    background: var(--terminal-green-bright);
+    border-color: var(--terminal-green-bright);
+    transform: none;
+  }
+  .btn-primary::after { display: none; }
 
   .btn-secondary {
-    @apply px-6 py-3 rounded-lg font-semibold text-sm uppercase tracking-wider
-           border border-neon-blue/50 text-neon-blue
-           hover:bg-neon-blue/10 hover:border-neon-blue
-           transition-all duration-300;
+    padding: 0.625rem 1.5rem;
+    border-radius: 2px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    background: transparent;
+    color: var(--terminal-green);
+    border: 1px solid var(--terminal-green);
+    backdrop-filter: none;
+    box-shadow: none;
+    transition: all 0.2s ease;
+  }
+  .btn-secondary:hover {
+    background: rgba(34,197,94,0.08);
+    border-color: var(--terminal-green-bright);
+    color: var(--terminal-green-bright);
+    box-shadow: none;
   }
 
-  /* Section heading */
-  .section-heading {
-    @apply font-display text-4xl md:text-5xl font-bold text-gradient mb-4;
+  /* ═══ NEON BORDER → terminal border ═══ */
+  .neon-border {
+    border: 1px solid var(--terminal-green);
+    box-shadow: none;
   }
 
-  /* Skill badge */
-  .skill-badge {
-    @apply glass-card px-4 py-3 flex items-center gap-3
-           hover:border-neon-blue/50 transition-all duration-300
-           hover:shadow-neon-blue/20 hover:shadow-lg;
+  /* ═══ FORM INPUT ═══ */
+  .form-input {
+    width: 100%;
+    border-radius: 2px;
+    padding: 0.75rem 1rem;
+    color: var(--terminal-white);
+    background: #050505;
+    border: 1px solid var(--terminal-border);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    transition: border-color 0.2s ease;
+  }
+  .form-input::placeholder { color: rgba(255,255,255,0.2); }
+  .form-input:focus {
+    outline: none;
+    border-color: var(--terminal-green);
+    box-shadow: 0 0 0 1px rgba(34,197,94,0.15);
+    background: #050505;
+  }
+
+  /* ═══ STATUS DOTS ═══ */
+  .status-dot-green {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--terminal-green);
+    box-shadow: 0 0 6px var(--terminal-green);
+    animation: termBlink 2s ease-in-out infinite;
+    display: inline-block;
+  }
+  .status-dot-yellow {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: #eab308;
+    box-shadow: 0 0 6px #eab308;
+    animation: termBlink 2.5s ease-in-out infinite;
+    display: inline-block;
+  }
+  .status-dot-red {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: #ef4444;
+    display: inline-block;
+  }
+
+  /* ═══ LIQUID BAR → terminal fill bar ═══ */
+  .liquid-bar {
+    position: relative;
+    height: 3px;
+    border-radius: 0;
+    background: rgba(255,255,255,0.05);
+    overflow: hidden;
+    border: none;
+  }
+  .liquid-bar-fill {
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    border-radius: 0;
+    background: var(--terminal-green);
+    box-shadow: 0 0 6px rgba(34,197,94,0.4);
+  }
+  .liquid-bar-fill::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -60%; width: 40%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    animation: shimmerBar 2s ease-in-out infinite;
   }
 
   /* Timeline line */
   .timeline-line {
-    @apply absolute left-6 md:left-1/2 top-0 bottom-0 w-0.5 
-           bg-gradient-to-b from-neon-blue via-neon-purple to-neon-pink;
-  }
-
-  /* Form input */
-  .form-input {
-    @apply w-full bg-dark-700/50 border border-white/10 rounded-lg
-           px-4 py-3 text-white placeholder-gray-500
-           focus:outline-none focus:border-neon-blue/50 focus:ring-1 focus:ring-neon-blue/50
-           transition-all duration-300;
+    position: absolute;
+    left: 1.5rem;
+    top: 0; bottom: 0; width: 1px;
+    background: var(--terminal-border);
   }
 }
 
-/* Utility styles */
+/* ─── Utilities ─────────────────────────────── */
 @layer utilities {
-  /* Glow text on hover */
-  .hover-glow:hover {
-    text-shadow: 0 0 20px currentColor;
-  }
+  .hover-glow:hover { color: var(--terminal-green); }
 
-  /* Tilt effect container */
-  .tilt-card {
-    transform-style: preserve-3d;
-    perspective: 1000px;
-  }
-
-  /* Particle effect background */
-  .particle-bg {
-    background-image: radial-gradient(circle at 20% 80%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
-                      radial-gradient(circle at 80% 20%, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
-                      radial-gradient(circle at 40% 40%, rgba(244, 114, 182, 0.05) 0%, transparent 50%);
-  }
-
-  /* Animated gradient background */
   .animated-gradient {
-    background: linear-gradient(-45deg, #0a0a0f, #12121a, #1a0a20, #0a1a20);
-    background-size: 400% 400%;
-    animation: gradientX 15s ease infinite;
+    background: var(--terminal-bg);
   }
 
-  /* Shimmer effect */
+  .story-section {
+    animation: sectionReveal linear both;
+  }
+
   .shimmer {
-    background: linear-gradient(
-      90deg,
-      transparent 0%,
-      rgba(255, 255, 255, 0.1) 50%,
-      transparent 100%
-    );
+    background: linear-gradient(90deg, transparent 0%, rgba(34,197,94,0.08) 50%, transparent 100%);
     background-size: 200% 100%;
     animation: shimmer 2s linear infinite;
   }
 }
 
-/* Custom animations */
-@keyframes gradientX {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
+/* ─── Keyframes ─────────────────────────────── */
+@keyframes gridScrollX {
+  0%   { background-position: 0 0; }
+  100% { background-position: var(--grid-size) 0; }
+}
+
+@keyframes termBlink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+@keyframes pulse-green {
+  0%, 100% { box-shadow: 0 0 6px var(--terminal-green); }
+  50%       { box-shadow: 0 0 12px var(--terminal-green-bright); }
+}
+
+@keyframes pulse-yellow {
+  0%, 100% { box-shadow: 0 0 6px #eab308; }
+  50%       { box-shadow: 0 0 12px #facc15; }
 }
 
 @keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
 }
 
-/* Noise texture overlay (optional) */
-.noise-overlay::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  opacity: 0.03;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+@keyframes shimmerBar {
+  0%   { left: -60%; }
+  100% { left: 140%; }
 }
 
-/* Responsive adjustments */
+@keyframes sectionReveal {
+  from { opacity: 0.4; transform: translateY(20px); }
+  to   { opacity: 1;   transform: translateY(0); }
+}
+
+/* ─── Section active states ──────────────────── */
+html[data-active-section] body::before { display: none; }
+
+/* ─── Responsive ────────────────────────────── */
 @media (max-width: 768px) {
-  .section-heading {
-    @apply text-3xl;
-  }
+  .section-heading { font-size: 1.75rem; }
 }
 
-/* Reduced motion preferences for accessibility and performance */
+/* ─── Reduced motion ────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-
-  /* Disable heavy animations */
-  .animated-gradient {
-    animation: none;
-    background: #0a0a0f;
-  }
-
-  .shimmer {
-    animation: none;
-  }
-
-  /* Disable parallax effects */
-  .particle-bg {
-    background-image: none;
-  }
+  body::before { animation: none; background-position: 0 0; }
+  .story-section { animation: none; }
 }
 
-/* Print styles */
+/* ─── Print ─────────────────────────────────── */
 @media print {
-  body {
-    @apply bg-white text-black;
-  }
-
-  .glass-card {
-    @apply bg-gray-100 border-gray-300;
-    box-shadow: none;
-  }
+  body { background: #fff; color: #000; }
+  .glass-card { background: #f9f9f9; border: 1px solid #ccc; }
+  body::before, body::after { display: none; }
 }

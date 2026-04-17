@@ -8,12 +8,14 @@
 
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useMemo } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import dynamic from 'next/dynamic';
 import { skills } from '@/data';
 import { SkillCategory } from '@/types';
+import { useDevicePerformance } from '@/hooks/useDevicePerformance';
+import AnimatedHeading from './AnimatedHeading';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -63,10 +65,13 @@ const Skills = () => {
   const cubeRef = useRef(null);
   const cubeContainerRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const { isMobile, reducedEffects } = useDevicePerformance();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
+  const shouldRenderCube = isInView && !isMobile && !reducedEffects;
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!shouldRenderCube) return;
     if (!cubeContainerRef.current) return;
     const rect = cubeContainerRef.current.getBoundingClientRect();
     const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
@@ -135,6 +140,19 @@ const Skills = () => {
     return acc;
   }, {} as { [key in SkillCategory]?: typeof skills });
 
+  const summaryMetrics = useMemo(() => {
+    return (Object.entries(skillsByCategory) as [SkillCategory, typeof skills][])
+      .slice(0, 4)
+      .map(([category, categorySkills]) => {
+        const average =
+          categorySkills.reduce((sum, skill) => sum + skill.proficiency, 0) / categorySkills.length;
+        return {
+          category,
+          value: Math.round(average),
+        };
+      });
+  }, [skillsByCategory]);
+
   // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -162,7 +180,7 @@ const Skills = () => {
   return (
     <section
       id="skills"
-      className="py-20 md:py-32 relative overflow-hidden"
+      className="story-section py-20 md:py-32 relative overflow-hidden"
       ref={ref}
     >
       {/* Background decoration */}
@@ -176,32 +194,53 @@ const Skills = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="section-heading">Skills & Technologies</h2>
+          <AnimatedHeading text="Skills & Technologies" />
           <p className="text-gray-400 max-w-2xl mx-auto mb-12">
             Tools and technologies I use to build robust, scalable, and secure cloud infrastructure.
           </p>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+            {summaryMetrics.map((metric, index) => (
+              <SkillCounterRing
+                key={metric.category}
+                label={metric.category}
+                value={metric.value}
+                delay={index * 0.08}
+                isInView={isInView}
+              />
+            ))}
+          </div>
 
           {/* 3D DevOps Cube */}
           <motion.div
             ref={cubeContainerRef}
             onMouseMove={handleMouseMove}
             style={{
-              transform: `perspective(1000px) rotateX(${mousePosition.y * 2}deg) rotateY(${mousePosition.x * 2}deg)`,
+              transform: shouldRenderCube
+                ? `perspective(1000px) rotateX(${mousePosition.y * 2}deg) rotateY(${mousePosition.x * 2}deg)`
+                : 'none',
             }}
             className="relative mb-12 transition-transform duration-200 ease-out"
           >
-            {/* Mouse tracking glow */}
-            <motion.div
-              className="absolute w-96 h-96 rounded-full bg-neon-blue/10 blur-3xl pointer-events-none"
-              animate={{
-                x: cursorPosition.x - 192,
-                y: cursorPosition.y - 192,
-              }}
-              transition={{ type: 'spring', stiffness: 150, damping: 20 }}
-            />
-
             <div ref={cubeRef}>
-              <DevOpsCube />
+              {shouldRenderCube ? (
+                <>
+                  {/* Mouse tracking glow */}
+                  <motion.div
+                    className="absolute w-96 h-96 rounded-full bg-neon-blue/10 blur-3xl pointer-events-none"
+                    animate={{
+                      x: cursorPosition.x - 192,
+                      y: cursorPosition.y - 192,
+                    }}
+                    transition={{ type: 'spring', stiffness: 150, damping: 20 }}
+                  />
+                  <DevOpsCube />
+                </>
+              ) : (
+                <div className="h-[260px] lg:h-[320px] rounded-2xl border border-white/10 bg-dark-800/40 flex items-center justify-center">
+                  <p className="text-sm text-gray-400">3D preview disabled for smoother performance on this device.</p>
+                </div>
+              )}
             </div>
           </motion.div>
         </motion.div>
@@ -307,6 +346,62 @@ const Skills = () => {
         </motion.div>
       </div>
     </section>
+  );
+};
+
+interface SkillCounterRingProps {
+  label: string;
+  value: number;
+  delay: number;
+  isInView: boolean;
+}
+
+const SkillCounterRing = ({ label, value, delay, isInView }: SkillCounterRingProps) => {
+  const radius = 34;
+  const circumference = 2 * Math.PI * radius;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 14 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.45, delay }}
+      className="glass-card p-4 flex flex-col items-center justify-center"
+    >
+      <div className="relative w-20 h-20">
+        <svg className="w-20 h-20 -rotate-90">
+          <circle
+            cx="40"
+            cy="40"
+            r={radius}
+            stroke="rgba(255,255,255,0.1)"
+            strokeWidth="6"
+            fill="none"
+          />
+          <motion.circle
+            cx="40"
+            cy="40"
+            r={radius}
+            stroke="#00d4ff"
+            strokeWidth="6"
+            fill="none"
+            strokeLinecap="round"
+            initial={{ strokeDashoffset: circumference }}
+            animate={isInView ? { strokeDashoffset: circumference - (value / 100) * circumference } : {}}
+            transition={{ duration: 1, delay }}
+            style={{ strokeDasharray: circumference }}
+          />
+        </svg>
+        <motion.span
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.4, delay: delay + 0.35 }}
+          className="absolute inset-0 flex items-center justify-center text-sm font-mono text-neon-blue"
+        >
+          {value}%
+        </motion.span>
+      </div>
+      <p className="mt-3 text-xs text-gray-300 text-center">{label}</p>
+    </motion.div>
   );
 };
 

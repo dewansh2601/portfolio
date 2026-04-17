@@ -4,34 +4,17 @@
 // ============================================
 
 import type { Metadata } from 'next';
-import { JetBrains_Mono, Space_Grotesk, Inter } from 'next/font/google';
+import { Courier_Prime } from 'next/font/google';
 import './globals.css';
 
-// Professional monospace font for code and technical content
-const jetbrainsMono = JetBrains_Mono({
+// Courier Prime — terminal slab-serif monospace (matches reference design)
+const courierPrime = Courier_Prime({
   subsets: ['latin'],
-  variable: '--font-jetbrains',
+  weight: ['400', '700'],
+  variable: '--font-courier-prime',
   display: 'swap',
   preload: true,
-  fallback: ['monospace'],
-});
-
-// Modern geometric sans-serif for headings
-const spaceGrotesk = Space_Grotesk({
-  subsets: ['latin'],
-  variable: '--font-space-grotesk',
-  display: 'swap',
-  preload: true,
-  fallback: ['system-ui', 'sans-serif'],
-});
-
-// Clean sans-serif for body text
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-  preload: true,
-  fallback: ['system-ui', 'sans-serif'],
+  fallback: ['Courier New', 'Courier', 'monospace'],
 });
 
 // SEO Metadata for the portfolio
@@ -97,7 +80,7 @@ export default function RootLayout({
               url: 'https://dewansh2601.github.io/portfolio/',
               sameAs: [
                 'https://github.com/dewansh2601',
-                'https://linkedin.com/in/dewansh-mishra',
+                'https://www.linkedin.com/in/dewansh-mis/',
               ],
               worksFor: {
                 '@type': 'Organization',
@@ -133,7 +116,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${inter.variable} ${jetbrainsMono.variable} ${spaceGrotesk.variable} animated-gradient min-h-screen`}>
+      <body className={`${courierPrime.variable} animated-gradient min-h-screen`}>
         {/* Main content wrapper */}
         <main className="relative">
           {children}

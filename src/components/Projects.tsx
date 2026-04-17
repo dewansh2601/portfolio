@@ -11,10 +11,12 @@ import { useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { projects } from '@/data';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import AnimatedHeading from './AnimatedHeading';
 
 const Projects = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const featuredProjects = projects.filter((p) => p.featured);
 
   // Animation variants
   const containerVariants = {
@@ -42,7 +44,7 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className="py-20 md:py-32 relative overflow-hidden"
+      className="story-section py-20 md:py-32 relative overflow-hidden"
       ref={ref}
     >
       {/* Background decoration */}
@@ -56,7 +58,7 @@ const Projects = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="section-heading">Featured Projects</h2>
+          <AnimatedHeading text="Featured Projects" />
           <p className="text-gray-400 max-w-2xl mx-auto">
             A collection of projects showcasing my skills in DevOps, automation, and cloud infrastructure.
           </p>
@@ -69,8 +71,12 @@ const Projects = () => {
           animate={isInView ? 'visible' : 'hidden'}
           className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
-          {projects.filter(p => p.featured).map((project) => (
-            <ProjectCard key={project.id} project={project} variants={cardVariants} />
+          {featuredProjects.map((project) => (
+            <ProjectCard
+              key={project.id}
+              project={project}
+              variants={cardVariants}
+            />
           ))}
         </motion.div>
 
@@ -134,6 +140,7 @@ const ProjectCard = ({ project, variants }: ProjectCardProps) => {
   return (
     <motion.div
       variants={variants}
+      tabIndex={0}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       whileHover={{ scale: 1.02 }}

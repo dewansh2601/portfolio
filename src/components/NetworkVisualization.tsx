@@ -17,7 +17,7 @@ function NetworkNodes() {
   // Create network nodes
   const nodes = useMemo<Node[]>(() => {
     const temp: Node[] = [];
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 30; i++) {
       temp.push({
         position: new THREE.Vector3(
           (Math.random() - 0.5) * 20,
@@ -139,7 +139,7 @@ function NetworkNodes() {
 function DataFlow() {
   const particlesRef = useRef<THREE.Points>(null);
 
-  const particleCount = 200;
+  const particleCount = 120;
   const particlePositions = useMemo(() => {
     const positions = new Float32Array(particleCount * 3);
     for (let i = 0; i < particleCount; i++) {
@@ -200,7 +200,11 @@ function DataFlow() {
 export default function NetworkVisualization() {
   return (
     <div className="absolute inset-0 opacity-30 pointer-events-none">
-      <Canvas camera={{ position: [0, 0, 20], fov: 60 }}>
+      <Canvas
+        camera={{ position: [0, 0, 20], fov: 60 }}
+        dpr={[1, 1.2]}
+        gl={{ antialias: false, powerPreference: 'high-performance' }}
+      >
         <ambientLight intensity={0.5} />
         <NetworkNodes />
         <DataFlow />

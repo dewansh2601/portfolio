@@ -11,6 +11,7 @@ import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { experiences } from '@/data';
 import { FaBriefcase, FaMapMarkerAlt, FaCalendarAlt } from 'react-icons/fa';
+import AnimatedHeading from './AnimatedHeading';
 
 const Experience = () => {
   const ref = useRef(null);
@@ -19,7 +20,7 @@ const Experience = () => {
   return (
     <section
       id="experience"
-      className="py-20 md:py-32 relative overflow-hidden"
+      className="story-section py-20 md:py-32 relative overflow-hidden"
       ref={ref}
     >
       {/* Background gradient */}
@@ -33,7 +34,7 @@ const Experience = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="section-heading">Work Experience</h2>
+          <AnimatedHeading text="Work Experience" />
           <p className="text-gray-400 max-w-2xl mx-auto">
             My professional journey in DevOps and cloud engineering.
           </p>
@@ -47,6 +48,12 @@ const Experience = () => {
             animate={isInView ? { height: '100%' } : {}}
             transition={{ duration: 1.5, ease: 'easeInOut' }}
             className="absolute left-6 md:left-1/2 top-0 w-0.5 bg-gradient-to-b from-neon-blue via-neon-purple to-neon-pink transform md:-translate-x-1/2"
+          />
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: [0.25, 0.75, 0.25] } : {}}
+            transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
+            className="absolute left-6 md:left-1/2 top-0 w-1.5 h-full bg-neon-blue/20 blur-sm transform md:-translate-x-1/2"
           />
 
           {/* Experience items */}
@@ -109,7 +116,11 @@ const ExperienceItem = ({ experience, index, isInView, isEven }: ExperienceItemP
           transition={{ delay: index * 0.2 + 0.3, duration: 0.3 }}
           className="w-4 h-4 rounded-full bg-dark-900 border-2 border-neon-blue flex items-center justify-center"
         >
-          <div className="w-2 h-2 rounded-full bg-neon-blue" />
+          <motion.div
+            animate={isInView ? { scale: [1, 1.4, 1], opacity: [0.8, 0.3, 0.8] } : {}}
+            transition={{ duration: 1.8, repeat: Infinity, delay: index * 0.15 }}
+            className="w-2 h-2 rounded-full bg-neon-blue"
+          />
         </motion.div>
       </div>
 

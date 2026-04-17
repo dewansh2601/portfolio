@@ -18,8 +18,10 @@ import {
 export const navItems: NavItem[] = [
   { label: 'Home', href: '#home' },
   { label: 'About', href: '#about' },
-  { label: 'Skills', href: '#skills' },
+  { label: 'Pipeline', href: '#devopsflow' },
+  { label: 'Arsenal', href: '#techarsenal' },
   { label: 'Projects', href: '#projects' },
+  { label: 'Infra', href: '#infrastatus' },
   { label: 'Experience', href: '#experience' },
   { label: 'Certifications', href: '#certifications' },
   { label: 'Contact', href: '#contact' },
@@ -183,7 +185,7 @@ export const socialLinks: SocialLink[] = [
   },
   {
     name: 'LinkedIn',
-    url: 'https://linkedin.com/in/dewansh-mishra',
+    url: 'https://www.linkedin.com/in/dewansh-mis/',
     icon: 'FaLinkedin',
   },
   {

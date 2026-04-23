@@ -71,11 +71,12 @@ const Projects = () => {
           animate={isInView ? 'visible' : 'hidden'}
           className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
-          {featuredProjects.map((project) => (
+          {featuredProjects.map((project, index) => (
             <ProjectCard
               key={project.id}
               project={project}
               variants={cardVariants}
+              index={index}
             />
           ))}
         </motion.div>
@@ -110,9 +111,10 @@ interface ProjectCardProps {
     hidden: { opacity: number; y: number };
     visible: { opacity: number; y: number; transition: { duration: number; ease: string } };
   };
+  index: number;
 }
 
-const ProjectCard = ({ project, variants }: ProjectCardProps) => {
+const ProjectCard = ({ project, variants, index }: ProjectCardProps) => {
   const [rotateX, setRotateX] = useState(0);
   const [rotateY, setRotateY] = useState(0);
 
@@ -137,6 +139,9 @@ const ProjectCard = ({ project, variants }: ProjectCardProps) => {
     setRotateY(0);
   };
 
+  const colors = ['#22c55e', '#3b82f6', '#a855f7', '#f59e0b', '#ec4899', '#06b6d4'];
+  const accentColor = colors[index % colors.length];
+
   return (
     <motion.div
       variants={variants}
@@ -147,6 +152,7 @@ const ProjectCard = ({ project, variants }: ProjectCardProps) => {
       style={{
         transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
         transformStyle: 'preserve-3d',
+        borderTop: `4px solid ${accentColor}`,
       }}
       className="glass-card p-6 relative overflow-hidden group cursor-pointer transition-all duration-200"
     >
@@ -188,7 +194,7 @@ const ProjectCard = ({ project, variants }: ProjectCardProps) => {
         </h3>
 
         {/* Description */}
-        <p className="text-gray-400 text-sm leading-relaxed mb-4">
+        <p className="text-gray-400 text-sm leading-relaxed mb-4 line-clamp-3" title={project.description}>
           {project.description}
         </p>
 

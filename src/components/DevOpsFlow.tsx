@@ -9,11 +9,12 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
+import { TbCode, TbTool, TbFlask, TbShieldCheck, TbPackage, TbRocket, TbActivity } from 'react-icons/tb';
 
 interface PipelineStage {
   id: string;
   label: string;
-  icon: string;
+  icon: React.ReactNode;
   tool: string;
   toolDetail: string;
   color: string;
@@ -26,7 +27,7 @@ const stages: PipelineStage[] = [
   {
     id: 'code',
     label: 'Code',
-    icon: '⌨️',
+    icon: <TbCode />,
     tool: 'Git + GitHub',
     toolDetail: 'Feature branch → PR → Code Review → Merge to main',
     color: '#60a5fa',
@@ -37,7 +38,7 @@ const stages: PipelineStage[] = [
   {
     id: 'build',
     label: 'Build',
-    icon: '🔨',
+    icon: <TbTool />,
     tool: 'GitHub Actions',
     toolDetail: 'Docker multi-stage build with layer caching. ARM64 + AMD64 manifest.',
     color: '#00d4ff',
@@ -48,7 +49,7 @@ const stages: PipelineStage[] = [
   {
     id: 'test',
     label: 'Test',
-    icon: '✅',
+    icon: <TbFlask />,
     tool: 'Jest / PyTest',
     toolDetail: 'Unit tests, integration tests, coverage reports. Gate: >80% coverage.',
     color: '#34d399',
@@ -59,7 +60,7 @@ const stages: PipelineStage[] = [
   {
     id: 'scan',
     label: 'Security Scan',
-    icon: '🔒',
+    icon: <TbShieldCheck />,
     tool: 'Trivy + OWASP ZAP + OSV',
     toolDetail: 'Container image scan (Trivy), DAST (OWASP ZAP), SCA (OSV Scanner). Blocks on CRITICAL CVEs.',
     color: '#f59e0b',
@@ -70,7 +71,7 @@ const stages: PipelineStage[] = [
   {
     id: 'push',
     label: 'Push to ECR',
-    icon: '📦',
+    icon: <TbPackage />,
     tool: 'AWS ECR',
     toolDetail: 'Tagged and pushed to Amazon ECR. Immutable tags. Lifecycle policy keeps last 5 images.',
     color: '#ff9900',
@@ -81,7 +82,7 @@ const stages: PipelineStage[] = [
   {
     id: 'deploy',
     label: 'Deploy',
-    icon: '🚀',
+    icon: <TbRocket />,
     tool: 'AWS EC2 / ECS',
     toolDetail: 'Blue/green deployment via ECS. Health checks before traffic cut-over. Terraform managed.',
     color: '#a855f7',
@@ -92,7 +93,7 @@ const stages: PipelineStage[] = [
   {
     id: 'monitor',
     label: 'Monitor',
-    icon: '📊',
+    icon: <TbActivity />,
     tool: 'CloudWatch + Grafana',
     toolDetail: 'AWS CloudWatch metrics, Grafana dashboards, Prometheus scraping. AlertManager for on-call.',
     color: '#f472b6',
@@ -228,7 +229,15 @@ const DevOpsFlow = () => {
                   }} />
 
                   {/* Icon */}
-                  <div style={{ fontSize: '1.75rem', marginBottom: '0.5rem' }}>{stage.icon}</div>
+                  <div style={{ 
+                    fontSize: '1.75rem', 
+                    marginBottom: '0.5rem',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                  }}>
+                    {stage.icon}
+                  </div>
 
                   {/* Label */}
                   <div style={{

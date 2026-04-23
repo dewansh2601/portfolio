@@ -45,7 +45,7 @@ const pipelineRuns = [
 const services = [
   { name: 'prod-api',       uptime: 99.97, region: 'ap-south-1',  status: 'healthy' },
   { name: 'prod-db (RDS)',   uptime: 99.99, region: 'ap-south-1',  status: 'healthy' },
-  { name: 'monitoring',     uptime: 98.40, region: 'us-east-1',   status: 'degraded' },
+  { name: 'monitoring',     uptime: 99.82, region: 'us-east-1',   status: 'healthy' },
   { name: 'staging-api',    uptime: 99.80, region: 'ap-south-1',  status: 'healthy' },
 ];
 
@@ -59,13 +59,14 @@ const regions = [
 
 // ── Animated counter hook ────────────────────
 function useCountUp(target: number, duration: number, trigger: boolean) {
-  const [val, setVal] = useState(0);
+  const [val, setVal] = useState(99.0);
   useEffect(() => {
     if (!trigger) return;
     const start = performance.now();
+    const startVal = 99.0;
     const step = (now: number) => {
       const elapsed = Math.min((now - start) / (duration * 1000), 1);
-      setVal(parseFloat((elapsed * target).toFixed(2)));
+      setVal(parseFloat((startVal + elapsed * (target - startVal)).toFixed(2)));
       if (elapsed < 1) requestAnimationFrame(step);
     };
     requestAnimationFrame(step);
@@ -170,7 +171,8 @@ const InfraStatus = () => {
           </div>
           <h2 className="section-heading">Infra Status</h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            A live-look at my cloud infrastructure — pipeline runs, service uptime, and recent deployments.
+            A live-look at my cloud infrastructure — pipeline runs, service uptime, and recent deployments.{' '}
+            <span style={{ fontSize: '0.75rem', color: 'rgba(107,114,128,1)', fontStyle: 'italic' }}>(simulated data)</span>
           </p>
         </motion.div>
 

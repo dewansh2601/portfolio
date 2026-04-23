@@ -34,9 +34,9 @@ export const aboutData: AboutData = {
   bio: `Passionate DevOps & Cloud Engineer with expertise in building scalable,
   secure, and automated cloud infrastructure. I specialize in CI/CD pipelines,
   containerization, and infrastructure as code. My journey from BSc CS through MCA
-  and specialized CDAC training to DevOps has equipped me with a strong foundation
-  in both development and operations, enabling me to bridge the gap between software
-  development and IT operations.`,
+  and specialized IACSD (DITISS) training to DevOps has equipped me with a strong
+  foundation in both development and operations, enabling me to bridge the gap between
+  software development and IT operations.`,
   journey: [
     {
       period: '2018 - 2021',
@@ -149,16 +149,16 @@ export const experiences: Experience[] = [
     title: 'Associate DevOps Engineer',
     company: 'Mindbowser Inc.',
     location: 'Pune, India',
-    description: 'Working on cloud infrastructure, CI/CD pipelines, and DevSecOps implementations for various client projects.',
+    description: 'Architecting and managing production cloud infrastructure on AWS, building DevSecOps pipelines, and leading containerization initiatives for healthcare and SaaS clients.',
     achievements: [
-      'Designed and implemented CI/CD pipelines using GitHub Actions for React and Java applications',
-      'Integrated security scanning tools (Trivy, OWASP ZAP, OSV Scanner) into deployment workflows',
-      'Managed AWS infrastructure including EC2, ECR, S3, and VPC configurations',
-      'Implemented HIPAA-compliant infrastructure using Terraform',
-      'Automated deployment processes reducing manual intervention by 80%',
-      'Resolved critical Docker architecture mismatches for ARM64 deployments',
+      'Provisioned and managed EKS clusters with Istio service mesh for production microservices — enabling mTLS, traffic management, and observability across services',
+      'Designed AWS Global Accelerator multi-region routing for a healthcare platform, reducing latency by ~40% for US and EU users',
+      'Built HIPAA-compliant audit logging pipelines using CloudWatch Logs, S3, and Lambda — capturing all PHI access events for compliance reporting',
+      'Resolved critical ARM64 / amd64 Docker architecture mismatches on GitHub Actions, eliminating build failures on Apple Silicon dev machines',
+      'Integrated Trivy, OWASP ZAP, and OSV Scanner into CI pipelines — blocked 12 HIGH/CRITICAL CVEs from reaching production in first 3 months',
+      'Automated multi-environment deployments (dev → QA → prod) with Terraform + GitHub Actions, reducing release cycle from 2 days to under 2 hours',
     ],
-    technologies: ['AWS', 'Docker', 'GitHub Actions', 'Terraform', 'Python', 'Linux'],
+    technologies: ['AWS EKS', 'Istio', 'Terraform', 'Docker', 'GitHub Actions', 'Global Accelerator', 'CloudWatch', 'Python'],
   },
 ];
 
@@ -173,7 +173,15 @@ export const certifications: Certification[] = [
     verificationUrl: 'https://www.credly.com/badges/ebaecc63-a038-4949-bcc7-4bfc81aa70ba/public_url',
     imageUrl: 'https://images.credly.com/size/340x340/images/00634f82-b07f-4bbd-a6bb-53de397fc3a6/image.png',
   },
-  // Add more certifications here when you have the image URLs
+  {
+    id: 'nptel-cloud',
+    name: 'Cloud Computing',
+    issuer: 'NPTEL (IIT Kharagpur)',
+    date: '2023',
+    credlyBadgeUrl: '',
+    verificationUrl: 'https://drive.google.com/file/d/1w8Utb_I6xRGH8kWB7XAofhrtf41AsE88/view?usp=drivesdk',
+    imageUrl: '/certifications/image.png',
+  },
 ];
 
 // Social links

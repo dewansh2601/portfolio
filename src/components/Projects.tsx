@@ -88,7 +88,7 @@ const Projects = () => {
           className="text-center mt-12"
         >
           <a
-            href="https://github.com/dewansh"
+            href="https://github.com/dewansh2601"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-neon-blue hover:text-neon-purple transition-colors group"

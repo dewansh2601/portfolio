@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: 'Dewansh Mishra' }],
   icons: {
-    icon: '/portfolio/favicon.svg',
+    icon: process.env.NODE_ENV === 'production' ? '/portfolio/favicon.svg' : '/favicon.svg',
   },
   openGraph: {
     title: 'Dewansh Mishra | DevOps & Cloud Engineer',

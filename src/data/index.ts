@@ -180,7 +180,7 @@ export const certifications: Certification[] = [
     date: '2023',
     credlyBadgeUrl: '',
     verificationUrl: 'https://drive.google.com/file/d/1w8Utb_I6xRGH8kWB7XAofhrtf41AsE88/view?usp=drivesdk',
-    imageUrl: '/certifications/image.png',
+    imageUrl: process.env.NODE_ENV === 'production' ? '/portfolio/certifications/image.png' : '/certifications/image.png',
   },
 ];
 

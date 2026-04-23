@@ -79,10 +79,10 @@ const Certifications = () => {
                 scale: 1.05,
                 transition: { duration: 0.2 }
               }}
-              className="glass-card p-6 w-full sm:w-80 text-center group relative overflow-hidden"
+              className="bg-dark-800/80 border border-white/5 p-6 w-full sm:w-80 text-center group relative overflow-hidden rounded-2xl shadow-xl"
             >
               {/* Glow effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-neon-blue/10 to-neon-purple/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-0 bg-gradient-to-br from-neon-blue/5 to-neon-purple/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
               {/* Badge image */}
               <div className="relative z-10 mb-4 flex justify-center">
@@ -143,25 +143,20 @@ const Certifications = () => {
 
               {/* Corner ribbon */}
               <div className="absolute -top-1 -right-1 w-20 h-20 overflow-hidden">
-                <div className="absolute top-3 right-[-35px] w-[120px] text-center text-[10px] font-bold text-dark-900 bg-neon-blue py-1 rotate-45">
-                  VERIFIED
-                </div>
+                {cert.date === 'In Progress' ? (
+                  <div className="absolute top-3 right-[-35px] w-[120px] text-center text-[9px] font-bold text-dark-900 bg-neon-purple py-1.5 rotate-45 tracking-wider shadow-lg shadow-neon-purple/20">
+                    IN PROGRESS
+                  </div>
+                ) : (
+                  <div className="absolute top-3 right-[-35px] w-[120px] text-center text-[10px] font-bold text-dark-900 bg-neon-blue py-1.5 rotate-45 tracking-wider shadow-lg shadow-neon-blue/20">
+                    VERIFIED
+                  </div>
+                )}
               </div>
             </motion.div>
           ))}
         </motion.div>
 
-        {/* Additional info */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.8, duration: 0.5 }}
-          className="text-center mt-12"
-        >
-          <p className="text-sm text-gray-500">
-            Currently pursuing additional AWS certifications to expand cloud expertise
-          </p>
-        </motion.div>
       </div>
     </section>
   );

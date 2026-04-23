@@ -12,15 +12,8 @@ import { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { aboutData } from '@/data';
-import { FaMapMarkerAlt, FaEnvelope, FaGraduationCap } from 'react-icons/fa';
-import AnimatedTerminal from './AnimatedTerminal';
-import dynamic from 'next/dynamic';
+import { FaMapMarkerAlt, FaEnvelope, FaGraduationCap, FaTerminal } from 'react-icons/fa';
 import AnimatedHeading from './AnimatedHeading';
-
-const HolographicTerminal = dynamic(() => import('./HolographicTerminal'), {
-  ssr: false,
-  loading: () => null,
-});
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -169,8 +162,8 @@ const About = () => {
             <div className="relative z-10">
               {/* Profile header */}
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-neon-blue to-neon-purple flex items-center justify-center text-2xl font-display font-bold">
-                  DM
+                <div className="w-16 h-16 rounded-full bg-dark-800 border-2 border-neon-blue/30 flex items-center justify-center text-neon-blue shadow-[0_0_15px_rgba(34,197,94,0.15)]">
+                  <FaTerminal className="w-7 h-7" />
                 </div>
                 <div>
                   <h3 className="font-display text-xl font-semibold text-white">
@@ -227,22 +220,22 @@ const About = () => {
                     className="journey-item relative pl-10"
                   >
                     {/* Timeline dot */}
-                    <div className="absolute left-0 top-1.5 w-6 h-6 rounded-full bg-dark-800 border-2 border-neon-blue flex items-center justify-center">
-                      <div className="w-2 h-2 rounded-full bg-neon-blue" />
+                    <div className="absolute left-[-2px] top-1 w-5 h-5 rounded-full bg-dark-800 border-2 border-neon-blue flex items-center justify-center">
+                      <div className="w-2.5 h-2.5 rounded-full bg-neon-blue shadow-[0_0_8px_rgba(34,197,94,0.8)]" />
                     </div>
 
                     {/* Content card */}
                     <div className="glass-card p-4 hover:border-neon-blue/30 transition-colors duration-300">
-                      <span className="text-xs text-neon-blue font-mono">
+                      <span className="text-xs text-neon-blue font-bold font-mono">
                         {item.period}
                       </span>
-                      <h4 className="font-semibold text-white mt-1">
+                      <h4 className="font-medium text-white mt-1">
                         {item.title}
                       </h4>
                       <p className="text-sm text-neon-purple mt-0.5">
                         {item.institution}
                       </p>
-                      <p className="text-sm text-gray-400 mt-2">
+                      <p className="text-sm text-gray-500 mt-2">
                         {item.description}
                       </p>
                     </div>
@@ -252,11 +245,6 @@ const About = () => {
             </div>
           </motion.div>
         </motion.div>
-
-        {/* Holographic Terminal Section */}
-        <div className="mt-20 mb-8">
-          <HolographicTerminal />
-        </div>
       </div>
     </section>
   );

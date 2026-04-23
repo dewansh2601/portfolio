@@ -34,68 +34,68 @@ interface Category {
 
 const categories: Category[] = [
   {
-    id: 'cloud',
-    label: 'Cloud & Infrastructure',
-    icon: '☁️',
-    color: '#ff9900',
-    glowColor: 'rgba(255,153,0,0.4)',
-    skills: [
-      { name: 'AWS',             icon: '🟠', level: 'daily-driver', color: '#ff9900' },
-      { name: 'Terraform',       icon: '🟣', level: 'production',   color: '#7B42BC' },
-      { name: 'Linux',           icon: '🐧', level: 'daily-driver', color: '#fde047' },
-      { name: 'VPC / Networking',icon: '🌐', level: 'production',   color: '#60a5fa' },
-    ],
-  },
-  {
-    id: 'containers',
-    label: 'Containers & Orchestration',
-    icon: '🐳',
-    color: '#2496ED',
-    glowColor: 'rgba(36,150,237,0.4)',
-    skills: [
-      { name: 'Docker',     icon: '🐳', level: 'daily-driver', color: '#2496ED' },
-      { name: 'Kubernetes', icon: '⎈',  level: 'production',   color: '#326CE5' },
-      { name: 'AWS ECR',    icon: '📦', level: 'production',   color: '#ff9900' },
-      { name: 'Helm',       icon: '⛵', level: 'regular',      color: '#0F1689' },
-    ],
-  },
-  {
-    id: 'cicd',
-    label: 'CI/CD & Automation',
-    icon: '⚙️',
-    color: '#00d4ff',
-    glowColor: 'rgba(0,212,255,0.4)',
-    skills: [
-      { name: 'GitHub Actions', icon: '🐙', level: 'daily-driver', color: '#00d4ff' },
-      { name: 'Jenkins',        icon: '🤵', level: 'regular',      color: '#d33833' },
-      { name: 'GitLab CI',      icon: '🦊', level: 'regular',      color: '#fc6d26' },
-      { name: 'Bash Scripting', icon: '💻', level: 'production',   color: '#4ade80' },
-    ],
-  },
-  {
-    id: 'security',
-    label: 'Security & Monitoring',
-    icon: '🔐',
-    color: '#f59e0b',
-    glowColor: 'rgba(245,158,11,0.4)',
-    skills: [
-      { name: 'Trivy',      icon: '🛡️', level: 'production', color: '#00b4d8' },
-      { name: 'OWASP ZAP',  icon: '🕷️', level: 'production', color: '#ef4444' },
-      { name: 'CloudWatch', icon: '📊', level: 'production', color: '#ff9900' },
-      { name: 'Grafana',    icon: '📈', level: 'regular',    color: '#f97316' },
-    ],
-  },
-  {
-    id: 'scripting',
-    label: 'Programming & IaC',
-    icon: '🐍',
+    id: 'code',
+    label: 'Pipeline Stage: Code',
+    icon: '💻',
     color: '#a855f7',
     glowColor: 'rgba(168,85,247,0.4)',
     skills: [
-      { name: 'Python',  icon: '🐍', level: 'production',   color: '#ffd43b' },
-      { name: 'YAML',    icon: '📄', level: 'daily-driver', color: '#cb3837' },
-      { name: 'Ansible', icon: '🤖', level: 'learning',     color: '#e00' },
-      { name: 'Git',     icon: '🌿', level: 'daily-driver', color: '#f05033' },
+      { name: 'Git', icon: '🌿', level: 'daily-driver', color: '#f05033' },
+      { name: 'Python', icon: '🐍', level: 'production', color: '#ffd43b' },
+      { name: 'Bash Scripting', icon: '💻', level: 'production', color: '#4ade80' },
+      { name: 'YAML', icon: '📄', level: 'daily-driver', color: '#cb3837' },
+    ],
+  },
+  {
+    id: 'build',
+    label: 'Pipeline Stage: Build',
+    icon: '🏗️',
+    color: '#2496ED',
+    glowColor: 'rgba(36,150,237,0.4)',
+    skills: [
+      { name: 'Docker', icon: '🐳', level: 'daily-driver', color: '#2496ED' },
+      { name: 'Terraform', icon: '🟣', level: 'production', color: '#7B42BC' },
+      { name: 'AWS ECR', icon: '📦', level: 'production', color: '#ff9900' },
+      { name: 'Helm', icon: '⛵', level: 'regular', color: '#0F1689' },
+    ],
+  },
+  {
+    id: 'scan',
+    label: 'Pipeline Stage: Scan',
+    icon: '🛡️',
+    color: '#ef4444',
+    glowColor: 'rgba(239,68,68,0.4)',
+    skills: [
+      { name: 'Trivy', icon: '🛡️', level: 'production', color: '#00b4d8' },
+      { name: 'OWASP ZAP', icon: '🕷️', level: 'production', color: '#ef4444' },
+      { name: 'SonarQube', icon: '🌊', level: 'regular', color: '#4c9ae8' },
+      { name: 'Gitleaks', icon: '💧', level: 'production', color: '#8b5cf6' },
+    ],
+  },
+  {
+    id: 'deploy',
+    label: 'Pipeline Stage: Deploy',
+    icon: '🚀',
+    color: '#00d4ff',
+    glowColor: 'rgba(0,212,255,0.4)',
+    skills: [
+      { name: 'Kubernetes', icon: '⎈', level: 'production', color: '#326CE5' },
+      { name: 'GitHub Actions', icon: '🐙', level: 'daily-driver', color: '#00d4ff' },
+      { name: 'Jenkins', icon: '🤵', level: 'regular', color: '#d33833' },
+      { name: 'GitLab CI', icon: '🦊', level: 'regular', color: '#fc6d26' },
+    ],
+  },
+  {
+    id: 'monitor',
+    label: 'Pipeline Stage: Monitor',
+    icon: '📊',
+    color: '#ff9900',
+    glowColor: 'rgba(255,153,0,0.4)',
+    skills: [
+      { name: 'AWS', icon: '🟠', level: 'daily-driver', color: '#ff9900' },
+      { name: 'Linux', icon: '🐧', level: 'daily-driver', color: '#fde047' },
+      { name: 'CloudWatch', icon: '📊', level: 'production', color: '#ff9900' },
+      { name: 'Grafana', icon: '📈', level: 'regular', color: '#f97316' },
     ],
   },
 ];
@@ -144,7 +144,7 @@ const SkillRow = ({ skill, isVisible, delay }: { skill: Skill; isVisible: boolea
 const TechArsenal = () => {
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: true, margin: '-80px' });
-  const [openCategory, setOpenCategory] = useState<string>('cloud');
+  const [openCategory, setOpenCategory] = useState<string>('code');
 
   const activeCat = categories.find(c => c.id === openCategory)!;
 
@@ -397,7 +397,7 @@ const TechArsenal = () => {
             flexWrap: 'wrap',
           }}
         >
-          {['AWS', 'Docker', 'K8s', 'Terraform', 'GitHub Actions', 'Linux', 'Python', 'Trivy', 'ECR', 'OWASP'].map((tech, i) => (
+          {['Istio', 'Global Accelerator', 'Kinesis', 'Athena', 'OSV Scanner', 'Prometheus', 'VPC', 'KMS'].map((tech, i) => (
             <motion.div
               key={tech}
               initial={{ opacity: 0, scale: 0.8 }}

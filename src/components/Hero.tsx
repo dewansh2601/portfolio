@@ -175,11 +175,17 @@ const Hero = () => {
 
       {/* Scroll hint chevron */}
       <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-gray-500 opacity-60"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2"
         animate={{ y: [0, 8, 0] }}
         transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
       >
-        <FaChevronDown className="w-6 h-6" />
+        <a 
+          href="#about" 
+          aria-label="Scroll down to About section"
+          className="text-gray-500 opacity-60 hover:text-neon-blue hover:opacity-100 transition-all duration-300 block p-2"
+        >
+          <FaChevronDown className="w-6 h-6" />
+        </a>
       </motion.div>
     </section>
   );

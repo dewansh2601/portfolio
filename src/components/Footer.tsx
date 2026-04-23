@@ -59,20 +59,17 @@ const Footer = () => {
             })}
           </div>
 
-          {/* Quick Links */}
-          <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-500">
-            <a href="#home" className="hover:text-neon-blue transition-colors">
-              Home
-            </a>
-            <a href="#about" className="hover:text-neon-blue transition-colors">
-              About
-            </a>
-            <a href="#projects" className="hover:text-neon-blue transition-colors">
-              Projects
-            </a>
-            <a href="#contact" className="hover:text-neon-blue transition-colors">
-              Contact
-            </a>
+          {/* Quick Links — mirrors full top nav */}
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-gray-500 max-w-xl">
+            <a href="#home" className="hover:text-neon-blue transition-colors">Home</a>
+            <a href="#about" className="hover:text-neon-blue transition-colors">About</a>
+            <a href="#devopsflow" className="hover:text-neon-blue transition-colors">Pipeline</a>
+            <a href="#techarsenal" className="hover:text-neon-blue transition-colors">Arsenal</a>
+            <a href="#projects" className="hover:text-neon-blue transition-colors">Projects</a>
+            <a href="#infrastatus" className="hover:text-neon-blue transition-colors">Infra</a>
+            <a href="#experience" className="hover:text-neon-blue transition-colors">Experience</a>
+            <a href="#certifications" className="hover:text-neon-blue transition-colors">Certifications</a>
+            <a href="#contact" className="hover:text-neon-blue transition-colors">Contact</a>
           </div>
 
           {/* Divider */}

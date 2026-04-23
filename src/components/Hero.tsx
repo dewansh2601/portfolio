@@ -200,7 +200,7 @@ const Hero = () => {
               marginTop: '3rem',
               fontFamily: 'var(--font-mono)',
               fontSize: '0.72rem',
-              color: 'rgba(255,255,255,0.2)',
+              color: 'rgba(255,255,255,0.6)',
               letterSpacing: '0.08em',
             }}
           >

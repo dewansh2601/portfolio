@@ -6,15 +6,22 @@
 // proficiency bars, accordion categories
 // ============================================
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 
 interface Skill {
   name: string;
   icon: string;
-  proficiency: number;
+  level: 'daily-driver' | 'production' | 'regular' | 'learning';
   color: string;
 }
+
+const levelConfig = {
+  'daily-driver': { label: 'Daily Driver',    bg: 'rgba(34,197,94,0.12)',  border: 'rgba(34,197,94,0.35)',  text: '#22c55e' },
+  'production':   { label: 'Production Use',  bg: 'rgba(0,212,255,0.10)',  border: 'rgba(0,212,255,0.3)',   text: '#00d4ff' },
+  'regular':      { label: 'Regular Use',     bg: 'rgba(168,85,247,0.10)', border: 'rgba(168,85,247,0.3)',  text: '#a855f7' },
+  'learning':     { label: 'Learning',        bg: 'rgba(234,179,8,0.10)',  border: 'rgba(234,179,8,0.3)',   text: '#eab308' },
+};
 
 interface Category {
   id: string;
@@ -33,10 +40,10 @@ const categories: Category[] = [
     color: '#ff9900',
     glowColor: 'rgba(255,153,0,0.4)',
     skills: [
-      { name: 'AWS', icon: '🟠', proficiency: 85, color: '#ff9900' },
-      { name: 'Terraform', icon: '🟣', proficiency: 80, color: '#7B42BC' },
-      { name: 'Linux', icon: '🐧', proficiency: 90, color: '#fde047' },
-      { name: 'VPC / Networking', icon: '🌐', proficiency: 78, color: '#60a5fa' },
+      { name: 'AWS',             icon: '🟠', level: 'daily-driver', color: '#ff9900' },
+      { name: 'Terraform',       icon: '🟣', level: 'production',   color: '#7B42BC' },
+      { name: 'Linux',           icon: '🐧', level: 'daily-driver', color: '#fde047' },
+      { name: 'VPC / Networking',icon: '🌐', level: 'production',   color: '#60a5fa' },
     ],
   },
   {
@@ -46,10 +53,10 @@ const categories: Category[] = [
     color: '#2496ED',
     glowColor: 'rgba(36,150,237,0.4)',
     skills: [
-      { name: 'Docker', icon: '🐳', proficiency: 88, color: '#2496ED' },
-      { name: 'Kubernetes', icon: '⎈', proficiency: 75, color: '#326CE5' },
-      { name: 'AWS ECR', icon: '📦', proficiency: 85, color: '#ff9900' },
-      { name: 'Helm', icon: '⛵', proficiency: 68, color: '#0F1689' },
+      { name: 'Docker',     icon: '🐳', level: 'daily-driver', color: '#2496ED' },
+      { name: 'Kubernetes', icon: '⎈',  level: 'production',   color: '#326CE5' },
+      { name: 'AWS ECR',    icon: '📦', level: 'production',   color: '#ff9900' },
+      { name: 'Helm',       icon: '⛵', level: 'regular',      color: '#0F1689' },
     ],
   },
   {
@@ -59,10 +66,10 @@ const categories: Category[] = [
     color: '#00d4ff',
     glowColor: 'rgba(0,212,255,0.4)',
     skills: [
-      { name: 'GitHub Actions', icon: '🐙', proficiency: 85, color: '#00d4ff' },
-      { name: 'Jenkins', icon: '🤵', proficiency: 78, color: '#d33833' },
-      { name: 'GitLab CI', icon: '🦊', proficiency: 70, color: '#fc6d26' },
-      { name: 'Bash Scripting', icon: '💻', proficiency: 85, color: '#4ade80' },
+      { name: 'GitHub Actions', icon: '🐙', level: 'daily-driver', color: '#00d4ff' },
+      { name: 'Jenkins',        icon: '🤵', level: 'regular',      color: '#d33833' },
+      { name: 'GitLab CI',      icon: '🦊', level: 'regular',      color: '#fc6d26' },
+      { name: 'Bash Scripting', icon: '💻', level: 'production',   color: '#4ade80' },
     ],
   },
   {
@@ -72,10 +79,10 @@ const categories: Category[] = [
     color: '#f59e0b',
     glowColor: 'rgba(245,158,11,0.4)',
     skills: [
-      { name: 'Trivy', icon: '🛡️', proficiency: 80, color: '#00b4d8' },
-      { name: 'OWASP ZAP', icon: '🕷️', proficiency: 72, color: '#ef4444' },
-      { name: 'CloudWatch', icon: '📊', proficiency: 75, color: '#ff9900' },
-      { name: 'Grafana', icon: '📈', proficiency: 68, color: '#f97316' },
+      { name: 'Trivy',      icon: '🛡️', level: 'production', color: '#00b4d8' },
+      { name: 'OWASP ZAP',  icon: '🕷️', level: 'production', color: '#ef4444' },
+      { name: 'CloudWatch', icon: '📊', level: 'production', color: '#ff9900' },
+      { name: 'Grafana',    icon: '📈', level: 'regular',    color: '#f97316' },
     ],
   },
   {
@@ -85,70 +92,52 @@ const categories: Category[] = [
     color: '#a855f7',
     glowColor: 'rgba(168,85,247,0.4)',
     skills: [
-      { name: 'Python', icon: '🐍', proficiency: 82, color: '#ffd43b' },
-      { name: 'YAML', icon: '📄', proficiency: 90, color: '#cb3837' },
-      { name: 'Ansible', icon: '🤖', proficiency: 65, color: '#e00' },
-      { name: 'Git', icon: '🌿', proficiency: 90, color: '#f05033' },
+      { name: 'Python',  icon: '🐍', level: 'production',   color: '#ffd43b' },
+      { name: 'YAML',    icon: '📄', level: 'daily-driver', color: '#cb3837' },
+      { name: 'Ansible', icon: '🤖', level: 'learning',     color: '#e00' },
+      { name: 'Git',     icon: '🌿', level: 'daily-driver', color: '#f05033' },
     ],
   },
 ];
 
-// Individual skill row with animated liquid fill bar
+// Individual skill row with experience level badge
 const SkillRow = ({ skill, isVisible, delay }: { skill: Skill; isVisible: boolean; delay: number }) => {
-  const [width, setWidth] = useState(0);
-
-  useEffect(() => {
-    if (isVisible) {
-      const timer = setTimeout(() => setWidth(skill.proficiency), delay * 1000);
-      return () => clearTimeout(timer);
-    }
-  }, [isVisible, skill.proficiency, delay]);
+  const cfg = levelConfig[skill.level];
 
   return (
-    <div style={{ marginBottom: '0.875rem' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.35rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <span style={{ fontSize: '1rem' }}>{skill.icon}</span>
-          <span style={{ fontSize: '0.85rem', fontWeight: 500, color: 'rgba(229,231,235,1)' }}>
-            {skill.name}
-          </span>
-        </div>
-        <span style={{ fontSize: '0.75rem', fontFamily: 'var(--font-mono)', color: skill.color }}>
-          {skill.proficiency}%
+    <motion.div
+      initial={{ opacity: 0, x: -12 }}
+      animate={isVisible ? { opacity: 1, x: 0 } : {}}
+      transition={{ delay, duration: 0.4 }}
+      style={{
+        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+        marginBottom: '0.875rem',
+        padding: '0.55rem 0.75rem',
+        borderRadius: '0.6rem',
+        background: 'rgba(255,255,255,0.03)',
+        border: '1px solid rgba(255,255,255,0.06)',
+      }}
+    >
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+        <span style={{ fontSize: '1rem' }}>{skill.icon}</span>
+        <span style={{ fontSize: '0.85rem', fontWeight: 500, color: 'rgba(229,231,235,1)' }}>
+          {skill.name}
         </span>
       </div>
-
-      {/* Liquid fill bar */}
-      <div
-        style={{
-          height: '6px', borderRadius: '999px',
-          background: 'rgba(255,255,255,0.06)',
-          border: '1px solid rgba(255,255,255,0.08)',
-          overflow: 'hidden',
-          position: 'relative',
-        }}
-      >
-        <div
-          style={{
-            position: 'absolute', top: 0, left: 0, bottom: 0,
-            borderRadius: '999px',
-            background: `linear-gradient(90deg, ${skill.color}99, ${skill.color})`,
-            boxShadow: `0 0 10px ${skill.color}60, 0 0 20px ${skill.color}30`,
-            width: `${width}%`,
-            transition: 'width 1.2s cubic-bezier(0.34, 1.56, 0.64, 1)',
-          }}
-        >
-          {/* Shimmer sweep on bar */}
-          <div style={{
-            position: 'absolute', top: 0, bottom: 0,
-            width: '40%',
-            background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent)',
-            animation: 'shimmerBar 2.5s ease-in-out infinite',
-            borderRadius: '999px',
-          }} />
-        </div>
-      </div>
-    </div>
+      <span style={{
+        fontSize: '0.68rem',
+        fontFamily: 'var(--font-mono)',
+        padding: '0.2rem 0.6rem',
+        borderRadius: '999px',
+        background: cfg.bg,
+        border: `1px solid ${cfg.border}`,
+        color: cfg.text,
+        letterSpacing: '0.04em',
+        flexShrink: 0,
+      }}>
+        {cfg.label}
+      </span>
+    </motion.div>
   );
 };
 
@@ -373,27 +362,25 @@ const TechArsenal = () => {
                 ))}
               </div>
 
-              {/* Overall mastery footer */}
+              {/* Legend footer */}
               <div style={{
                 marginTop: '1.5rem',
                 paddingTop: '1.25rem',
                 borderTop: '1px solid rgba(255,255,255,0.07)',
                 display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
+                flexWrap: 'wrap',
+                gap: '0.5rem',
                 position: 'relative', zIndex: 1,
               }}>
-                <span style={{ fontSize: '0.78rem', color: 'rgba(107,114,128,1)' }}>
-                  Category Average
-                </span>
-                <span style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.85rem',
-                  color: activeCat.color,
-                  fontWeight: 600,
-                }}>
-                  {Math.round(activeCat.skills.reduce((a, s) => a + s.proficiency, 0) / activeCat.skills.length)}%
-                </span>
+                {(Object.entries(levelConfig) as [keyof typeof levelConfig, typeof levelConfig[keyof typeof levelConfig]][]).map(([key, cfg]) => (
+                  <span key={key} style={{
+                    fontSize: '0.65rem', fontFamily: 'var(--font-mono)',
+                    padding: '0.15rem 0.5rem', borderRadius: '999px',
+                    background: cfg.bg, border: `1px solid ${cfg.border}`, color: cfg.text,
+                  }}>
+                    {cfg.label}
+                  </span>
+                ))}
               </div>
             </motion.div>
           </motion.div>

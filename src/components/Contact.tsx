@@ -47,21 +47,34 @@ const Contact = () => {
     });
   };
 
-  // Handle form submission
+  // Handle form submission — powered by Formspree
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission (replace with actual API call)
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      setSubmitStatus('success');
-      setFormData({ name: '', email: '', subject: '', message: '' });
+      const res = await fetch('https://formspree.io/f/xqewgnpd', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        }),
+      });
+
+      if (res.ok) {
+        setSubmitStatus('success');
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        setSubmitStatus('error');
+      }
     } catch {
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
-      setTimeout(() => setSubmitStatus('idle'), 5000);
+      setTimeout(() => setSubmitStatus('idle'), 6000);
     }
   };
 
@@ -318,9 +331,26 @@ const Contact = () => {
                   animate={{ opacity: 1, y: 0 }}
                   className="text-red-400 text-sm text-center"
                 >
-                  Something went wrong. Please try again.
+                  Something went wrong.{' '}
+                  <a
+                    href="mailto:dewanshmishra01@gmail.com?subject=Portfolio%20Inquiry"
+                    className="text-neon-blue hover:underline"
+                  >
+                    Email me directly →
+                  </a>
                 </motion.p>
               )}
+
+              {/* Direct email fallback */}
+              <p className="text-xs text-gray-600 text-center">
+                Or reach me directly at{' '}
+                <a
+                  href="mailto:dewanshmishra01@gmail.com"
+                  className="text-gray-500 hover:text-neon-blue transition-colors"
+                >
+                  dewanshmishra01@gmail.com
+                </a>
+              </p>
             </motion.form>
           </motion.div>
         </div>

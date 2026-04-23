@@ -11,7 +11,12 @@ const nextConfig = {
 
   // Configure image domains if needed
   images: {
-    domains: ['images.credly.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.credly.com',
+      },
+    ],
     unoptimized: true, // Required for static export
   },
 };

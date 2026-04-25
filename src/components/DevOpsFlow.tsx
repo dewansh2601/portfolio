@@ -113,6 +113,7 @@ const DevOpsFlow = () => {
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: true, margin: '-80px' });
   const [selectedStage, setSelectedStage] = useState<PipelineStage | null>(null);
+  const [hoveredStage, setHoveredStage] = useState<string | null>(null);
   const [animatedIn, setAnimatedIn] = useState(false);
 
   useEffect(() => {
@@ -191,14 +192,23 @@ const DevOpsFlow = () => {
                   animate={animatedIn ? { opacity: 1, y: 0, scale: 1 } : {}}
                   transition={{ delay: index * 0.12, duration: 0.5, ease: 'easeOut' }}
                   onClick={() => setSelectedStage(selectedStage?.id === stage.id ? null : stage)}
+                  onMouseEnter={() => setHoveredStage(stage.id)}
+                  onMouseLeave={() => setHoveredStage(null)}
                   style={{
                     position: 'relative',
                     width: '110px',
                     padding: '1.25rem 0.75rem',
-                    background: 'linear-gradient(140deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 60%, rgba(168,85,247,0.05) 100%)',
+                    background: (() => {
+                      const isActive = selectedStage?.id === stage.id;
+                      const isHovered = hoveredStage === stage.id;
+                      if (isActive || isHovered) {
+                        return `linear-gradient(140deg, ${stage.color}18 0%, rgba(255,255,255,0.03) 60%, ${stage.color}10 100%)`;
+                      }
+                      return 'linear-gradient(140deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 60%, rgba(168,85,247,0.05) 100%)';
+                    })(),
                     backdropFilter: 'blur(20px)',
                     WebkitBackdropFilter: 'blur(20px)',
-                    border: selectedStage?.id === stage.id
+                    border: (selectedStage?.id === stage.id || hoveredStage === stage.id)
                       ? `1px solid ${stage.color}`
                       : '1px solid rgba(255,255,255,0.12)',
                     borderRadius: '1.25rem',
@@ -206,8 +216,10 @@ const DevOpsFlow = () => {
                     textAlign: 'center',
                     boxShadow: selectedStage?.id === stage.id
                       ? `0 0 30px ${stage.glowColor}, 0 1px 0 0 rgba(255,255,255,0.2) inset, 0 8px 32px rgba(0,0,0,0.4)`
-                      : '0 1px 0 0 rgba(255,255,255,0.14) inset, 0 8px 24px rgba(0,0,0,0.3)',
-                    transition: 'all 0.3s ease',
+                      : hoveredStage === stage.id
+                        ? `0 0 20px ${stage.glowColor}, 0 1px 0 0 rgba(255,255,255,0.18) inset, 0 8px 28px rgba(0,0,0,0.35)`
+                        : '0 1px 0 0 rgba(255,255,255,0.14) inset, 0 8px 24px rgba(0,0,0,0.3)',
+                    transition: 'all 0.25s ease',
                   }}
                   whileHover={{ y: -6, scale: 1.05 }}
                   whileTap={{ scale: 0.97 }}
@@ -234,7 +246,11 @@ const DevOpsFlow = () => {
                     marginBottom: '0.5rem',
                     display: 'flex',
                     justifyContent: 'center',
-                    alignItems: 'center'
+                    alignItems: 'center',
+                    color: (selectedStage?.id === stage.id || hoveredStage === stage.id)
+                      ? stage.color
+                      : 'rgba(255,255,255,0.85)',
+                    transition: 'color 0.25s ease',
                   }}>
                     {stage.icon}
                   </div>
@@ -243,10 +259,12 @@ const DevOpsFlow = () => {
                   <div style={{
                     fontSize: '0.75rem',
                     fontWeight: 600,
-                    color: selectedStage?.id === stage.id ? stage.color : 'rgba(255,255,255,0.9)',
+                    color: (selectedStage?.id === stage.id || hoveredStage === stage.id)
+                      ? stage.color
+                      : 'rgba(255,255,255,0.9)',
                     fontFamily: 'var(--font-heading)',
                     lineHeight: 1.2,
-                    transition: 'color 0.3s ease',
+                    transition: 'color 0.25s ease',
                   }}>
                     {stage.label}
                   </div>

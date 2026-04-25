@@ -50,7 +50,14 @@ const Footer = () => {
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.2, y: -3 }}
                   whileTap={{ scale: 0.9 }}
-                  className="w-10 h-10 rounded-full bg-dark-700/50 flex items-center justify-center text-gray-400 hover:text-neon-blue hover:shadow-neon-blue transition-all duration-300"
+                  className="w-10 h-10 rounded-full flex items-center justify-center text-gray-400 hover:text-neon-blue transition-all duration-300"
+                  style={{
+                    background: 'rgba(34,197,94,0.06)',
+                    backdropFilter: 'blur(10px)',
+                    WebkitBackdropFilter: 'blur(10px)',
+                    border: '1px solid rgba(34,197,94,0.16)',
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.04)',
+                  }}
                   title={link.name}
                 >
                   {IconComponent && <IconComponent className="w-4 h-4" />}

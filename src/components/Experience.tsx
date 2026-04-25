@@ -23,8 +23,9 @@ const Experience = () => {
       className="story-section py-20 md:py-32 relative overflow-hidden"
       ref={ref}
     >
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-neon-blue/3 to-transparent" />
+      {/* Ambient glass orbs */}
+      <div className="glass-orb" style={{ width: 400, height: 400, top: '10%', left: '-12%', background: 'radial-gradient(circle, rgba(34,197,94,0.09) 0%, transparent 70%)' }} />
+      <div className="glass-orb" style={{ width: 280, height: 280, bottom: '5%', right: '-8%', background: 'radial-gradient(circle, rgba(74,222,128,0.07) 0%, transparent 70%)' }} />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}

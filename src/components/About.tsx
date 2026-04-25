@@ -128,7 +128,9 @@ const About = () => {
       className="story-section py-20 md:py-32 relative overflow-hidden"
       ref={ref}
     >
-
+      {/* Ambient glass orbs */}
+      <div className="glass-orb" style={{ width: 400, height: 400, top: '-10%', left: '-10%', background: 'radial-gradient(circle, rgba(34,197,94,0.12) 0%, transparent 70%)' }} />
+      <div className="glass-orb" style={{ width: 300, height: 300, bottom: '5%', right: '-5%', background: 'radial-gradient(circle, rgba(74,222,128,0.08) 0%, transparent 70%)' }} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -162,7 +164,7 @@ const About = () => {
             <div className="relative z-10">
               {/* Profile header */}
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-16 h-16 rounded-full bg-dark-800 border-2 border-neon-blue/30 flex items-center justify-center text-neon-blue shadow-[0_0_15px_rgba(34,197,94,0.15)]">
+                <div className="w-16 h-16 rounded-full flex items-center justify-center text-neon-blue" style={{ background: 'rgba(34,197,94,0.08)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)', border: '2px solid rgba(34,197,94,0.3)', boxShadow: '0 0 20px rgba(34,197,94,0.15), 0 4px 12px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08)' }}>
                   <FaTerminal className="w-7 h-7" />
                 </div>
                 <div>
@@ -220,8 +222,8 @@ const About = () => {
                     className="journey-item relative pl-10"
                   >
                     {/* Timeline dot */}
-                    <div className="absolute left-[-2px] top-1 w-5 h-5 rounded-full bg-dark-800 border-2 border-neon-blue flex items-center justify-center">
-                      <div className="w-2.5 h-2.5 rounded-full bg-neon-blue shadow-[0_0_8px_rgba(34,197,94,0.8)]" />
+                    <div className="absolute left-[-2px] top-1 w-5 h-5 rounded-full flex items-center justify-center" style={{ background: 'rgba(10,18,12,0.8)', backdropFilter: 'blur(8px)', border: '2px solid rgba(34,197,94,0.5)', boxShadow: '0 0 12px rgba(34,197,94,0.3)' }}>
+                      <div className="w-2.5 h-2.5 rounded-full" style={{ background: '#22c55e', boxShadow: '0 0 10px rgba(34,197,94,0.9)' }} />
                     </div>
 
                     {/* Content card */}

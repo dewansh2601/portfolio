@@ -47,8 +47,9 @@ const Projects = () => {
       className="story-section py-20 md:py-32 relative overflow-hidden"
       ref={ref}
     >
-      {/* Background decoration */}
-      <div className="absolute top-1/2 left-0 w-full h-1/2 bg-gradient-to-t from-neon-purple/5 to-transparent" />
+      {/* Ambient glass orbs */}
+      <div className="glass-orb" style={{ width: 350, height: 350, top: '20%', right: '-8%', background: 'radial-gradient(circle, rgba(34,197,94,0.10) 0%, transparent 70%)' }} />
+      <div className="glass-orb" style={{ width: 250, height: 250, bottom: '10%', left: '-5%', background: 'radial-gradient(circle, rgba(74,222,128,0.07) 0%, transparent 70%)' }} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
@@ -152,7 +153,15 @@ const ProjectCard = ({ project, variants, index }: ProjectCardProps) => {
       style={{
         transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
         transformStyle: 'preserve-3d',
-        borderTop: `4px solid ${accentColor}`,
+        borderTop: `3px solid ${accentColor}`,
+        borderRadius: '14px',
+        background: 'rgba(10,18,12,0.55)',
+        backdropFilter: 'blur(18px) saturate(180%)',
+        WebkitBackdropFilter: 'blur(18px) saturate(180%)',
+        border: `1px solid rgba(255,255,255,0.08)`,
+        borderTop: `3px solid ${accentColor}`,
+        boxShadow: `0 8px 32px rgba(0,0,0,0.55), 0 0 0 0px ${accentColor}22`,
+        transition: 'box-shadow 0.3s ease, transform 0.2s ease',
       }}
       className="glass-card p-6 relative overflow-hidden group cursor-pointer transition-all duration-200"
     >

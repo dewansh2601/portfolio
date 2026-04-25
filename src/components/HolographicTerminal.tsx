@@ -95,7 +95,7 @@ export default function HolographicTerminal() {
       {/* Scanline effect */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-xl">
         <motion.div
-          className="absolute inset-x-0 h-1 bg-gradient-to-r from-transparent via-neon-blue/30 to-transparent"
+          className="absolute inset-x-0 h-1 bg-gradient-to-r from-transparent via-green-400/20 to-transparent"
           animate={{
             y: [0, 400],
           }}
@@ -108,9 +108,25 @@ export default function HolographicTerminal() {
       </div>
 
       {/* Terminal window */}
-      <div className="relative glass-card border-2 border-neon-blue/30 rounded-xl overflow-hidden shadow-neon-blue">
+      <div
+        className="relative overflow-hidden"
+        style={{
+          background: 'rgba(6, 14, 8, 0.72)',
+          backdropFilter: 'blur(24px) saturate(200%)',
+          WebkitBackdropFilter: 'blur(24px) saturate(200%)',
+          border: '1px solid rgba(34,197,94,0.30)',
+          borderRadius: '16px',
+          boxShadow: [
+            '0 20px 60px rgba(0,0,0,0.7)',
+            '0 0 0 1px rgba(34,197,94,0.10)',
+            '0 0 60px rgba(34,197,94,0.15)',
+            '0 0 120px rgba(34,197,94,0.08)',
+            'inset 0 1px 0 rgba(255,255,255,0.07)',
+          ].join(', '),
+        }}
+      >
         {/* Terminal header */}
-        <div className="flex items-center gap-2 px-4 py-3 bg-dark-800/80 border-b border-neon-blue/20">
+        <div className="flex items-center gap-2 px-4 py-3 border-b" style={{ background: 'rgba(10,20,12,0.6)', backdropFilter: 'blur(12px)', borderColor: 'rgba(34,197,94,0.15)' }}>
           <div className="flex gap-2">
             <div className="w-3 h-3 rounded-full bg-red-500/80" />
             <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
@@ -139,9 +155,13 @@ export default function HolographicTerminal() {
         {/* Terminal content */}
         <div
           ref={terminalRef}
-          className="relative p-6 h-96 overflow-y-auto font-mono text-sm bg-dark-900/95 backdrop-blur-md"
+          className="relative p-6 h-96 overflow-y-auto font-mono text-sm backdrop-blur-md"
           style={{
             textShadow: '0 0 10px currentColor',
+            background: 'rgba(4, 10, 5, 0.95)',
+            /* Green scrollbar */
+            scrollbarWidth: 'thin',
+            scrollbarColor: 'rgba(34,197,94,0.5) rgba(255,255,255,0.04)',
           }}
         >
           <AnimatePresence>
@@ -198,7 +218,7 @@ export default function HolographicTerminal() {
         </div>
 
         {/* Bottom status bar */}
-        <div className="flex items-center justify-between px-4 py-2 bg-dark-800/80 border-t border-neon-blue/20 text-xs font-mono">
+        <div className="flex items-center justify-between px-4 py-2 border-t text-xs font-mono" style={{ background: 'rgba(10,20,12,0.6)', backdropFilter: 'blur(12px)', borderColor: 'rgba(34,197,94,0.15)' }}>
           <div className="flex items-center gap-4">
             <span className="text-green-400">● Connected</span>
             <span className="text-gray-400">AWS us-east-1</span>
@@ -211,11 +231,11 @@ export default function HolographicTerminal() {
           </div>
         </div>
 
-        {/* Corner decorations */}
-        <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-neon-blue/50 rounded-tl-xl" />
-        <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-neon-blue/50 rounded-tr-xl" />
-        <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-neon-blue/50 rounded-bl-xl" />
-        <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-neon-blue/50 rounded-br-xl" />
+        {/* Corner decorations — green HUD brackets */}
+        <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 rounded-tl-xl" style={{ borderColor: 'rgba(34,197,94,0.55)' }} />
+        <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 rounded-tr-xl" style={{ borderColor: 'rgba(34,197,94,0.55)' }} />
+        <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 rounded-bl-xl" style={{ borderColor: 'rgba(34,197,94,0.55)' }} />
+        <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 rounded-br-xl" style={{ borderColor: 'rgba(34,197,94,0.55)' }} />
       </div>
 
       {/* Reflection effect */}

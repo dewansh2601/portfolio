@@ -145,6 +145,7 @@ const TechArsenal = () => {
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: true, margin: '-80px' });
   const [openCategory, setOpenCategory] = useState<string>('code');
+  const [hoveredCat, setHoveredCat] = useState<string | null>(null);
 
   const activeCat = categories.find(c => c.id === openCategory)!;
 
@@ -206,6 +207,8 @@ const TechArsenal = () => {
                   animate={isInView ? { opacity: 1, x: 0 } : {}}
                   transition={{ delay: 0.3 + index * 0.08 }}
                   onClick={() => setOpenCategory(cat.id)}
+                  onMouseEnter={() => setHoveredCat(cat.id)}
+                  onMouseLeave={() => setHoveredCat(null)}
                   style={{
                     position: 'relative',
                     display: 'flex',
@@ -217,21 +220,25 @@ const TechArsenal = () => {
                     textAlign: 'left',
                     background: isActive
                       ? `linear-gradient(135deg, ${cat.color}15 0%, ${cat.color}08 100%)`
-                      : 'linear-gradient(140deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%)',
+                      : hoveredCat === cat.id
+                        ? `linear-gradient(135deg, ${cat.color}10 0%, ${cat.color}05 100%)`
+                        : 'linear-gradient(140deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%)',
                     backdropFilter: 'blur(16px)',
                     WebkitBackdropFilter: 'blur(16px)',
-                    border: isActive
+                    border: (isActive || hoveredCat === cat.id)
                       ? `1px solid ${cat.color}50`
                       : '1px solid rgba(255,255,255,0.08)',
                     boxShadow: isActive
                       ? `0 0 24px ${cat.glowColor}40, 0 1px 0 0 rgba(255,255,255,0.15) inset`
-                      : '0 1px 0 0 rgba(255,255,255,0.08) inset, 0 4px 12px rgba(0,0,0,0.2)',
-                    transition: 'all 0.3s ease',
+                      : hoveredCat === cat.id
+                        ? `0 0 16px ${cat.glowColor}30, 0 1px 0 0 rgba(255,255,255,0.12) inset`
+                        : '0 1px 0 0 rgba(255,255,255,0.08) inset, 0 4px 12px rgba(0,0,0,0.2)',
+                    transition: 'all 0.25s ease',
                   }}
                   whileHover={{ x: 4 }}
                 >
                   {/* Specular */}
-                  {isActive && (
+                  {(isActive || hoveredCat === cat.id) && (
                     <div style={{
                       position: 'absolute', top: 0, left: '10%', right: '10%', height: '1px',
                       background: `linear-gradient(90deg, transparent, rgba(255,255,255,0.28), ${cat.color}60, transparent)`,
@@ -244,11 +251,15 @@ const TechArsenal = () => {
                     borderRadius: '0.75rem',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     fontSize: '1.25rem',
-                    background: isActive ? `${cat.color}20` : 'rgba(255,255,255,0.06)',
-                    border: `1px solid ${isActive ? cat.color + '40' : 'rgba(255,255,255,0.1)'}`,
+                    background: (isActive || hoveredCat === cat.id) ? `${cat.color}20` : 'rgba(255,255,255,0.06)',
+                    border: `1px solid ${(isActive || hoveredCat === cat.id) ? cat.color + '40' : 'rgba(255,255,255,0.1)'}`,
                     flexShrink: 0,
-                    transition: 'all 0.3s ease',
-                    boxShadow: isActive ? `0 0 16px ${cat.glowColor}` : 'none',
+                    transition: 'all 0.25s ease',
+                    boxShadow: isActive
+                      ? `0 0 16px ${cat.glowColor}`
+                      : hoveredCat === cat.id
+                        ? `0 0 10px ${cat.glowColor}`
+                        : 'none',
                   }}>
                     {cat.icon}
                   </div>
@@ -258,8 +269,8 @@ const TechArsenal = () => {
                       fontFamily: 'var(--font-heading)',
                       fontSize: '0.9rem',
                       fontWeight: 600,
-                      color: isActive ? cat.color : 'rgba(229,231,235,1)',
-                      transition: 'color 0.3s ease',
+                      color: (isActive || hoveredCat === cat.id) ? cat.color : 'rgba(229,231,235,1)',
+                      transition: 'color 0.25s ease',
                     }}>
                       {cat.label}
                     </div>
@@ -272,14 +283,15 @@ const TechArsenal = () => {
                     </div>
                   </div>
 
-                  {/* Arrow */}
-                  {isActive && (
+                  {/* Arrow dot */}
+                  {(isActive || hoveredCat === cat.id) && (
                     <div style={{
                       marginLeft: 'auto',
                       width: '6px', height: '6px',
                       borderRadius: '50%',
                       background: cat.color,
                       boxShadow: `0 0 8px ${cat.color}`,
+                      opacity: isActive ? 1 : 0.6,
                     }} />
                   )}
                 </motion.button>

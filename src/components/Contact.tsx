@@ -107,7 +107,9 @@ const Contact = () => {
       className="story-section py-20 md:py-32 relative overflow-hidden"
       ref={ref}
     >
-
+      {/* Ambient glass orbs */}
+      <div className="glass-orb" style={{ width: 400, height: 400, top: '-8%', left: '-10%', background: 'radial-gradient(circle, rgba(34,197,94,0.10) 0%, transparent 70%)' }} />
+      <div className="glass-orb" style={{ width: 300, height: 300, bottom: '5%', right: '-8%', background: 'radial-gradient(circle, rgba(74,222,128,0.07) 0%, transparent 70%)' }} />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
@@ -142,14 +144,14 @@ const Contact = () => {
                   href={`mailto:${aboutData.email}`}
                   className="flex items-center gap-3 text-gray-400 hover:text-neon-blue transition-colors group"
                 >
-                  <div className="w-10 h-10 rounded-lg bg-dark-700 border border-white/10 flex items-center justify-center group-hover:border-neon-blue/50 transition-colors">
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center transition-all" style={{ background: 'rgba(34,197,94,0.07)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', border: '1px solid rgba(34,197,94,0.18)', boxShadow: '0 4px 12px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05)' }}>
                     <FaEnvelope className="w-4 h-4" />
                   </div>
                   <span>{aboutData.email}</span>
                 </a>
 
                 <div className="flex items-center gap-3 text-gray-400">
-                  <div className="w-10 h-10 rounded-lg bg-dark-700 border border-white/10 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: 'rgba(34,197,94,0.07)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', border: '1px solid rgba(34,197,94,0.18)', boxShadow: '0 4px 12px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05)' }}>
                     <FaMapMarkerAlt className="w-4 h-4" />
                   </div>
                   <span>{aboutData.location}</span>

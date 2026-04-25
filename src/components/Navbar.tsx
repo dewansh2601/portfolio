@@ -40,10 +40,18 @@ const Navbar = () => {
       transition={{ duration: 0.5, ease: 'easeOut' }}
       style={{
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50,
-        backgroundColor: isScrolled ? 'rgba(3,3,3,0.96)' : 'transparent',
-        borderBottom: isScrolled ? '1px solid rgba(255,255,255,0.08)' : '1px solid transparent',
-        transition: 'background-color 0.3s ease, border-color 0.3s ease',
-        backdropFilter: isScrolled ? 'blur(4px)' : 'none',
+        backgroundColor: isScrolled
+          ? 'rgba(6, 12, 8, 0.75)'
+          : 'transparent',
+        borderBottom: isScrolled
+          ? '1px solid rgba(34, 197, 94, 0.12)'
+          : '1px solid transparent',
+        backdropFilter: isScrolled ? 'blur(20px) saturate(200%)' : 'none',
+        WebkitBackdropFilter: isScrolled ? 'blur(20px) saturate(200%)' : 'none',
+        boxShadow: isScrolled
+          ? '0 4px 30px rgba(0,0,0,0.5), 0 0 0 1px rgba(34,197,94,0.06), 0 1px 0 rgba(255,255,255,0.04) inset'
+          : 'none',
+        transition: 'background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease, backdrop-filter 0.4s ease',
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -51,7 +59,7 @@ const Navbar = () => {
           {/* Logo */}
           <motion.a
             href="#home"
-            whileHover={{ color: '#4ade80' }}
+            whileHover={{ color: '#4ade80', textShadow: '0 0 12px rgba(74,222,128,0.6)' }}
             style={{
               fontFamily: 'var(--font-mono)',
               fontSize: '1.1rem',
@@ -59,6 +67,8 @@ const Navbar = () => {
               color: '#22c55e',
               textDecoration: 'none',
               letterSpacing: '0.02em',
+              textShadow: '0 0 8px rgba(34,197,94,0.4)',
+              transition: 'all 0.2s ease',
             }}
           >
             DM<span style={{ opacity: 0.5 }}>@devops</span><span style={{ animation: 'termBlink 1s infinite' }}>_</span>
@@ -84,7 +94,7 @@ const Navbar = () => {
                     color: isActive ? '#22c55e' : 'rgba(255,255,255,0.55)',
                     textDecoration: 'none',
                     transition: 'color 0.2s ease',
-                    borderRadius: '2px',
+                    borderRadius: '8px',
                   }}
                   className="hover:text-white"
                 >
@@ -93,9 +103,11 @@ const Navbar = () => {
                       layoutId="nav-active"
                       style={{
                         position: 'absolute', inset: 0,
-                        border: '1px solid rgba(34,197,94,0.3)',
-                        borderRadius: '2px',
-                        backgroundColor: 'rgba(34,197,94,0.06)',
+                        border: '1px solid rgba(34,197,94,0.35)',
+                        borderRadius: '8px',
+                        backgroundColor: 'rgba(34,197,94,0.08)',
+                        backdropFilter: 'blur(8px)',
+                        boxShadow: '0 0 16px rgba(34,197,94,0.12), inset 0 1px 0 rgba(255,255,255,0.06)',
                       }}
                       transition={{ type: 'spring', stiffness: 420, damping: 35 }}
                     />
@@ -112,8 +124,13 @@ const Navbar = () => {
           <button
             onClick={() => setIsMenuOpen(v => !v)}
             style={{
-              padding: '0.4rem', background: 'none', border: 'none',
-              color: 'rgba(255,255,255,0.6)', cursor: 'pointer',
+              padding: '0.4rem',
+              background: 'rgba(34,197,94,0.06)',
+              border: '1px solid rgba(34,197,94,0.15)',
+              borderRadius: '8px',
+              color: 'rgba(255,255,255,0.7)',
+              cursor: 'pointer',
+              backdropFilter: 'blur(8px)',
             }}
             className="md:hidden"
             aria-label="Toggle menu"
@@ -136,8 +153,11 @@ const Navbar = () => {
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25 }}
             style={{
-              backgroundColor: '#030303',
-              borderBottom: '1px solid rgba(255,255,255,0.08)',
+              backgroundColor: 'rgba(6, 12, 8, 0.85)',
+              backdropFilter: 'blur(20px) saturate(180%)',
+              WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+              borderBottom: '1px solid rgba(34,197,94,0.12)',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.5)',
             }}
           >
             <div style={{ padding: '0.75rem 1rem', display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
@@ -158,8 +178,9 @@ const Navbar = () => {
                       textDecoration: 'none',
                       border: '1px solid',
                       borderColor: isActive ? 'rgba(34,197,94,0.3)' : 'transparent',
-                      backgroundColor: isActive ? 'rgba(34,197,94,0.05)' : 'transparent',
-                      borderRadius: '2px',
+                      backgroundColor: isActive ? 'rgba(34,197,94,0.08)' : 'transparent',
+                      borderRadius: '8px',
+                      backdropFilter: isActive ? 'blur(8px)' : 'none',
                       transition: 'all 0.2s ease',
                     }}
                   >

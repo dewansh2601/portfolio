@@ -50,8 +50,8 @@ const Hero = () => {
           <motion.div variants={container} initial="hidden" animate="visible">
             
             {/* Status badge above name */}
-            <motion.div variants={line} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', padding: '0.25rem 0.75rem', borderRadius: '999px', fontSize: '0.75rem', fontFamily: 'var(--font-mono)', color: '#22c55e', backgroundColor: 'rgba(34,197,94,0.1)', border: '1px solid rgba(34,197,94,0.3)', marginBottom: '1.5rem' }}>
-              <span style={{ width: 6, height: 6, borderRadius: '50%', backgroundColor: '#22c55e', boxShadow: '0 0 6px #22c55e', animation: 'termBlink 2s infinite', display: 'inline-block' }} />
+            <motion.div variants={line} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', padding: '0.35rem 1rem', borderRadius: '999px', fontSize: '0.75rem', fontFamily: 'var(--font-mono)', color: '#22c55e', backgroundColor: 'rgba(34,197,94,0.08)', border: '1px solid rgba(34,197,94,0.25)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)', boxShadow: '0 4px 16px rgba(0,0,0,0.4), 0 0 20px rgba(34,197,94,0.08), inset 0 1px 0 rgba(255,255,255,0.06)', marginBottom: '1.5rem' }}>
+              <span style={{ width: 6, height: 6, borderRadius: '50%', backgroundColor: '#22c55e', boxShadow: '0 0 8px #22c55e', animation: 'termBlink 2s infinite', display: 'inline-block' }} />
               Open for roles
             </motion.div>
 
@@ -122,8 +122,23 @@ const Hero = () => {
               <a
                 href={aboutData.resumeUrl}
                 download
-                className="inline-flex items-center gap-2 px-6 h-[44px] bg-neon-green text-dark-900 border border-neon-green rounded-sm font-mono text-sm font-bold no-underline hover:bg-neon-green/90 transition-colors"
-                style={{ backgroundColor: '#22c55e', color: '#000', borderColor: '#22c55e' }}
+                className="inline-flex items-center gap-2 px-6 h-[44px] font-mono text-sm font-bold no-underline transition-all"
+                style={{
+                  background: 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)',
+                  color: '#000',
+                  border: '1px solid rgba(34,197,94,0.6)',
+                  borderRadius: '10px',
+                  boxShadow: '0 4px 20px rgba(34,197,94,0.3), 0 1px 0 rgba(255,255,255,0.2) inset',
+                  transition: 'all 0.25s ease',
+                }}
+                onMouseEnter={e => {
+                  (e.currentTarget as HTMLAnchorElement).style.boxShadow = '0 6px 30px rgba(34,197,94,0.5), 0 0 0 1px rgba(74,222,128,0.4)';
+                  (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(-2px)';
+                }}
+                onMouseLeave={e => {
+                  (e.currentTarget as HTMLAnchorElement).style.boxShadow = '0 4px 20px rgba(34,197,94,0.3), 0 1px 0 rgba(255,255,255,0.2) inset';
+                  (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
+                }}
               >
                 <FaFileAlt className="w-4 h-4" />
                 View Resume
@@ -132,7 +147,29 @@ const Hero = () => {
               {/* Secondary CTA */}
               <a
                 href="#contact"
-                className="inline-flex items-center gap-2 px-6 h-[44px] bg-transparent text-gray-300 border border-white/20 rounded-sm font-mono text-sm font-medium no-underline hover:border-neon-green hover:text-neon-green transition-all"
+                className="inline-flex items-center gap-2 px-6 h-[44px] font-mono text-sm font-medium no-underline transition-all"
+                style={{
+                  background: 'rgba(34,197,94,0.06)',
+                  color: 'rgba(255,255,255,0.8)',
+                  border: '1px solid rgba(34,197,94,0.22)',
+                  borderRadius: '10px',
+                  backdropFilter: 'blur(10px)',
+                  WebkitBackdropFilter: 'blur(10px)',
+                  boxShadow: '0 4px 16px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05)',
+                  transition: 'all 0.25s ease',
+                }}
+                onMouseEnter={e => {
+                  (e.currentTarget as HTMLAnchorElement).style.borderColor = 'rgba(34,197,94,0.5)';
+                  (e.currentTarget as HTMLAnchorElement).style.color = '#22c55e';
+                  (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(-2px)';
+                  (e.currentTarget as HTMLAnchorElement).style.boxShadow = '0 6px 20px rgba(34,197,94,0.15), inset 0 1px 0 rgba(255,255,255,0.05)';
+                }}
+                onMouseLeave={e => {
+                  (e.currentTarget as HTMLAnchorElement).style.borderColor = 'rgba(34,197,94,0.22)';
+                  (e.currentTarget as HTMLAnchorElement).style.color = 'rgba(255,255,255,0.8)';
+                  (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
+                  (e.currentTarget as HTMLAnchorElement).style.boxShadow = '0 4px 16px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05)';
+                }}
               >
                 Get in touch →
               </a>

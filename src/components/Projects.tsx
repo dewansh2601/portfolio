@@ -153,12 +153,11 @@ const ProjectCard = ({ project, variants, index }: ProjectCardProps) => {
       style={{
         transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
         transformStyle: 'preserve-3d',
-        borderTop: `3px solid ${accentColor}`,
         borderRadius: '14px',
         background: 'rgba(10,18,12,0.55)',
         backdropFilter: 'blur(18px) saturate(180%)',
         WebkitBackdropFilter: 'blur(18px) saturate(180%)',
-        border: `1px solid rgba(255,255,255,0.08)`,
+        border: '1px solid rgba(255,255,255,0.08)',
         borderTop: `3px solid ${accentColor}`,
         boxShadow: `0 8px 32px rgba(0,0,0,0.55), 0 0 0 0px ${accentColor}22`,
         transition: 'box-shadow 0.3s ease, transform 0.2s ease',
@@ -209,12 +208,12 @@ const ProjectCard = ({ project, variants, index }: ProjectCardProps) => {
 
         {/* Tags with animations */}
         <div className="flex flex-wrap gap-2 mb-4">
-          {project.tags.map((tag, index) => (
+          {project.tags.map((tag, i) => (
             <motion.span
               key={tag}
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: index * 0.1 }}
+              transition={{ delay: i * 0.1 }}
               whileHover={{ scale: 1.1, y: -2 }}
               className="px-2 py-1 text-xs font-mono bg-dark-600/50 border border-white/10 rounded text-gray-300 hover:border-neon-blue/50 hover:text-neon-blue transition-all cursor-default"
             >

@@ -63,8 +63,8 @@ function Server({ position, index, isActive }: { position: [number, number, numb
           <mesh position={[-0.5, 0, 0.42]}>
             <circleGeometry args={[0.03, 16]} />
             <meshStandardMaterial
-              color="#00d4ff"
-              emissive="#00d4ff"
+              color="#22c55e"
+              emissive="#22c55e"
               emissiveIntensity={0.8}
             />
           </mesh>
@@ -123,7 +123,7 @@ function ServerRack({ position, rackIndex }: { position: [number, number, number
       <Text
         position={[position[0], position[1] + 3, position[2]]}
         fontSize={0.2}
-        color="#00d4ff"
+        color="#22c55e"
         anchorX="center"
         anchorY="middle"
       >
@@ -200,7 +200,7 @@ function NetworkSwitch({ position }: { position: [number, number, number] }) {
       <RoundedBox args={[2, 0.4, 1]} radius={0.05} smoothness={4} ref={meshRef}>
         <meshStandardMaterial
           color="#1a1a2e"
-          emissive="#00d4ff"
+          emissive="#22c55e"
           emissiveIntensity={0.3}
           metalness={0.8}
           roughness={0.3}
@@ -209,7 +209,7 @@ function NetworkSwitch({ position }: { position: [number, number, number] }) {
       <Text
         position={[0, 0.3, 0]}
         fontSize={0.15}
-        color="#00d4ff"
+        color="#22c55e"
         anchorX="center"
         anchorY="middle"
       >
@@ -238,8 +238,8 @@ export default function ServerRacks3D() {
     <div className="w-full h-[500px] lg:h-[600px]">
       <Canvas camera={{ position: [0, 0, 12], fov: 60 }}>
         <ambientLight intensity={0.3} />
-        <pointLight position={[0, 5, 5]} intensity={1} color="#00d4ff" />
-        <pointLight position={[5, 0, 5]} intensity={0.5} color="#a855f7" />
+        <pointLight position={[0, 5, 5]} intensity={1} color="#22c55e" />
+        <pointLight position={[5, 0, 5]} intensity={0.5} color="#4ade80" />
         <pointLight position={[-5, 0, 5]} intensity={0.5} color="#ff4444" />
 
         {/* Server Racks */}

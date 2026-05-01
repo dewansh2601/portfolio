@@ -68,9 +68,9 @@ function RotatingCube() {
       <mesh ref={cubeRef}>
         <boxGeometry args={[4, 4, 4]} />
         <meshStandardMaterial
-          color="#00d4ff"
+          color="#22c55e"
           wireframe
-          emissive="#00d4ff"
+          emissive="#22c55e"
           emissiveIntensity={0.5}
           transparent
           opacity={0.4}
@@ -81,9 +81,9 @@ function RotatingCube() {
       <mesh rotation={[0, Math.PI / 4, 0]}>
         <boxGeometry args={[3, 3, 3]} />
         <meshStandardMaterial
-          color="#a855f7"
+          color="#4ade80"
           wireframe
-          emissive="#a855f7"
+          emissive="#4ade80"
           emissiveIntensity={0.3}
           transparent
           opacity={0.3}
@@ -104,15 +104,15 @@ function RotatingCube() {
       {/* Orbiting particles */}
       <mesh position={[5, 0, 0]}>
         <sphereGeometry args={[0.2, 16, 16]} />
-        <meshStandardMaterial color="#00d4ff" emissive="#00d4ff" emissiveIntensity={1} />
+        <meshStandardMaterial color="#22c55e" emissive="#22c55e" emissiveIntensity={1} />
       </mesh>
       <mesh position={[-5, 0, 0]}>
         <sphereGeometry args={[0.2, 16, 16]} />
-        <meshStandardMaterial color="#a855f7" emissive="#a855f7" emissiveIntensity={1} />
+        <meshStandardMaterial color="#4ade80" emissive="#4ade80" emissiveIntensity={1} />
       </mesh>
       <mesh position={[0, 5, 0]}>
         <sphereGeometry args={[0.2, 16, 16]} />
-        <meshStandardMaterial color="#f472b6" emissive="#f472b6" emissiveIntensity={1} />
+        <meshStandardMaterial color="#86efac" emissive="#86efac" emissiveIntensity={1} />
       </mesh>
     </group>
   );
@@ -161,9 +161,9 @@ export default function DevOpsCube() {
     <div className="w-full h-[350px] lg:h-[400px]">
       <Canvas camera={{ position: [0, 0, 15], fov: 60 }}>
         <ambientLight intensity={0.5} />
-        <pointLight position={[10, 10, 10]} intensity={1} color="#00d4ff" />
-        <pointLight position={[-10, -10, -10]} intensity={0.5} color="#a855f7" />
-        <spotLight position={[0, 15, 0]} intensity={0.8} angle={0.3} penumbra={1} color="#f472b6" />
+        <pointLight position={[10, 10, 10]} intensity={1} color="#22c55e" />
+        <pointLight position={[-10, -10, -10]} intensity={0.5} color="#4ade80" />
+        <spotLight position={[0, 15, 0]} intensity={0.8} angle={0.3} penumbra={1} color="#86efac" />
 
         <NetworkConnections />
         <RotatingCube />

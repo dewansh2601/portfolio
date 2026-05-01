@@ -18,8 +18,8 @@ interface Skill {
 
 const levelConfig = {
   'daily-driver': { label: 'Daily Driver',    bg: 'rgba(34,197,94,0.12)',  border: 'rgba(34,197,94,0.35)',  text: '#22c55e' },
-  'production':   { label: 'Production Use',  bg: 'rgba(0,212,255,0.10)',  border: 'rgba(0,212,255,0.3)',   text: '#00d4ff' },
-  'regular':      { label: 'Regular Use',     bg: 'rgba(168,85,247,0.10)', border: 'rgba(168,85,247,0.3)',  text: '#a855f7' },
+  'production':   { label: 'Production Use',  bg: 'rgba(34, 197, 94,0.10)',  border: 'rgba(34, 197, 94,0.3)',   text: '#22c55e' },
+  'regular':      { label: 'Regular Use',     bg: 'rgba(74, 222, 128,0.10)', border: 'rgba(74, 222, 128,0.3)',  text: '#4ade80' },
   'learning':     { label: 'Learning',        bg: 'rgba(234,179,8,0.10)',  border: 'rgba(234,179,8,0.3)',   text: '#eab308' },
 };
 
@@ -37,8 +37,8 @@ const categories: Category[] = [
     id: 'code',
     label: 'Pipeline Stage: Code',
     icon: '💻',
-    color: '#a855f7',
-    glowColor: 'rgba(168,85,247,0.4)',
+    color: '#4ade80',
+    glowColor: 'rgba(74, 222, 128,0.4)',
     skills: [
       { name: 'Git', icon: '🌿', level: 'daily-driver', color: '#f05033' },
       { name: 'Python', icon: '🐍', level: 'production', color: '#ffd43b' },
@@ -76,11 +76,11 @@ const categories: Category[] = [
     id: 'deploy',
     label: 'Pipeline Stage: Deploy',
     icon: '🚀',
-    color: '#00d4ff',
-    glowColor: 'rgba(0,212,255,0.4)',
+    color: '#22c55e',
+    glowColor: 'rgba(34, 197, 94,0.4)',
     skills: [
       { name: 'Kubernetes', icon: '⎈', level: 'production', color: '#326CE5' },
-      { name: 'GitHub Actions', icon: '🐙', level: 'daily-driver', color: '#00d4ff' },
+      { name: 'GitHub Actions', icon: '🐙', level: 'daily-driver', color: '#22c55e' },
       { name: 'Jenkins', icon: '🤵', level: 'regular', color: '#d33833' },
       { name: 'GitLab CI', icon: '🦊', level: 'regular', color: '#fc6d26' },
     ],
@@ -159,7 +159,7 @@ const TechArsenal = () => {
       <div style={{
         position: 'absolute', top: '20%', right: '-10%',
         width: '400px', height: '400px',
-        background: 'radial-gradient(circle, rgba(168,85,247,0.06) 0%, transparent 70%)',
+        background: 'radial-gradient(circle, rgba(74, 222, 128,0.06) 0%, transparent 70%)',
         pointerEvents: 'none',
         borderRadius: '50%',
       }} />
@@ -176,11 +176,11 @@ const TechArsenal = () => {
             display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
             marginBottom: '0.75rem',
             padding: '0.25rem 0.75rem',
-            background: 'rgba(168,85,247,0.08)',
-            border: '1px solid rgba(168,85,247,0.2)',
+            background: 'rgba(74, 222, 128,0.08)',
+            border: '1px solid rgba(74, 222, 128,0.2)',
             borderRadius: '999px',
           }}>
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: '#a855f7', letterSpacing: '0.15em' }}>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: '#4ade80', letterSpacing: '0.15em' }}>
               SKILLS
             </span>
           </div>
@@ -314,7 +314,7 @@ const TechArsenal = () => {
               style={{
                 position: 'relative',
                 padding: '2rem',
-                background: 'linear-gradient(140deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 60%, rgba(168,85,247,0.04) 100%)',
+                background: 'linear-gradient(140deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 60%, rgba(74, 222, 128,0.04) 100%)',
                 backdropFilter: 'blur(24px)',
                 WebkitBackdropFilter: 'blur(24px)',
                 border: `1px solid ${activeCat.color}30`,

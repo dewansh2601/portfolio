@@ -103,8 +103,8 @@ function DockerContainer({ position, label, color, status }: {
           <mesh key={i} position={[(i - 1) * 0.2, 0, 0]}>
             <circleGeometry args={[0.04, 16]} />
             <meshStandardMaterial
-              color="#00d4ff"
-              emissive="#00d4ff"
+              color="#22c55e"
+              emissive="#22c55e"
               emissiveIntensity={0.8}
             />
           </mesh>
@@ -264,8 +264,8 @@ function TrafficFlow({ start, end, delay }: {
     <mesh ref={particleRef}>
       <sphereGeometry args={[0.15, 16, 16]} />
       <meshStandardMaterial
-        color="#00d4ff"
-        emissive="#00d4ff"
+        color="#22c55e"
+        emissive="#22c55e"
         emissiveIntensity={1}
       />
     </mesh>
@@ -291,8 +291,8 @@ export default function ContainerOrchestration3D() {
     <div className="w-full h-[600px] lg:h-[700px]">
       <Canvas camera={{ position: [8, 8, 12], fov: 60 }}>
         <ambientLight intensity={0.4} />
-        <pointLight position={[10, 10, 10]} intensity={1} color="#00d4ff" />
-        <pointLight position={[-10, 10, 10]} intensity={0.8} color="#a855f7" />
+        <pointLight position={[10, 10, 10]} intensity={1} color="#22c55e" />
+        <pointLight position={[-10, 10, 10]} intensity={0.8} color="#4ade80" />
         <spotLight
           position={[0, 15, 0]}
           intensity={1}

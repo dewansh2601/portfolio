@@ -34,7 +34,7 @@ function PipelineFlow() {
               <motion.div
                 animate={{
                   scale: isActive ? 1.1 : 1,
-                  boxShadow: isActive ? '0 0 20px rgba(0, 212, 255, 0.5)' : '0 0 0px rgba(0, 212, 255, 0)',
+                  boxShadow: isActive ? '0 0 20px rgba(34, 197, 94, 0.5)' : '0 0 0px rgba(34, 197, 94, 0)',
                 }}
                 className={`w-12 h-12 rounded-lg border flex items-center justify-center text-[10px] font-mono ${
                   isDone || isActive
@@ -116,7 +116,7 @@ function KubernetesPulseMap() {
         {packets.map((packet, idx) => (
           <motion.div
             key={`p-${idx}`}
-            className="absolute w-2 h-2 rounded-full bg-neon-blue shadow-[0_0_10px_rgba(0,212,255,0.8)]"
+            className="absolute w-2 h-2 rounded-full bg-neon-blue shadow-[0_0_10px_rgba(34, 197, 94,0.8)]"
             style={{ left: `${packet.from.x}%`, top: `${packet.from.y}%` }}
             animate={{
               left: [`${packet.from.x}%`, `${packet.to.x}%`],

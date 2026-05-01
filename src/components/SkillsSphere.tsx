@@ -64,7 +64,7 @@ function ParticleRing() {
       </bufferGeometry>
       <pointsMaterial
         size={0.05}
-        color="#a855f7"
+        color="#4ade80"
         transparent
         opacity={0.6}
         sizeAttenuation
@@ -79,7 +79,7 @@ export default function SkillsSphere() {
       <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
         <ambientLight intensity={0.5} />
         <directionalLight position={[10, 10, 5]} intensity={1} />
-        <directionalLight position={[-10, -10, -5]} intensity={0.5} color="#a855f7" />
+        <directionalLight position={[-10, -10, -5]} intensity={0.5} color="#4ade80" />
         <AnimatedSphere />
         <ParticleRing />
         <OrbitControls

@@ -140,7 +140,7 @@ const ProjectCard = ({ project, variants, index }: ProjectCardProps) => {
     setRotateY(0);
   };
 
-  const colors = ['#22c55e', '#3b82f6', '#a855f7', '#f59e0b', '#ec4899', '#06b6d4'];
+  const colors = ['#22c55e', '#4ade80', '#16a34a', '#86efac'];
   const accentColor = colors[index % colors.length];
 
   return (

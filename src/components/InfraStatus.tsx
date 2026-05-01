@@ -119,7 +119,7 @@ const InfraStatus = () => {
   }, [isInView, logIndex]);
 
   const glassPanel = {
-    background: 'linear-gradient(140deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 60%, rgba(168,85,247,0.04) 100%)',
+    background: 'linear-gradient(140deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 60%, rgba(74, 222, 128,0.04) 100%)',
     backdropFilter: 'blur(20px)',
     WebkitBackdropFilter: 'blur(20px)',
     border: '1px solid rgba(255,255,255,0.10)',
@@ -195,7 +195,7 @@ const InfraStatus = () => {
             </div>
             <div style={{
               fontFamily: 'var(--font-heading)', fontSize: '3rem', fontWeight: 800,
-              background: 'linear-gradient(135deg, #22c55e, #00d4ff)',
+              background: 'linear-gradient(135deg, #22c55e, #22c55e)',
               WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
               backgroundClip: 'text', lineHeight: 1,
             }}>
@@ -211,7 +211,7 @@ const InfraStatus = () => {
             }}>
               <div style={{
                 height: '100%', borderRadius: '999px',
-                background: 'linear-gradient(90deg, #22c55e, #00d4ff)',
+                background: 'linear-gradient(90deg, #22c55e, #22c55e)',
                 width: `${totalUptime}%`,
                 transition: 'width 1.8s ease',
                 boxShadow: '0 0 10px rgba(34,197,94,0.5)',
@@ -251,7 +251,7 @@ const InfraStatus = () => {
                   }}
                 >
                   <StatusBadge status={run.status} />
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: '#00d4ff' }}>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: '#22c55e' }}>
                     {run.repo}
                   </span>
                   <span style={{ fontSize: '0.75rem', color: 'rgba(107,114,128,1)' }}>
@@ -315,7 +315,7 @@ const InfraStatus = () => {
                       style={{
                         height: '100%', borderRadius: '999px',
                         background: svc.uptime >= 99.9
-                          ? 'linear-gradient(90deg, #22c55e, #00d4ff)'
+                          ? 'linear-gradient(90deg, #22c55e, #22c55e)'
                           : 'linear-gradient(90deg, #eab308, #f97316)',
                         boxShadow: svc.uptime >= 99.9 ? '0 0 8px rgba(34,197,94,0.5)' : '0 0 8px rgba(234,179,8,0.5)',
                       }}
@@ -376,7 +376,7 @@ const InfraStatus = () => {
               {logIndex < deployLogLines.length && (
                 <span style={{
                   display: 'inline-block', width: '0.5rem', height: '0.9em',
-                  background: '#00d4ff', animation: 'pulse-green 1s infinite',
+                  background: '#22c55e', animation: 'pulse-green 1s infinite',
                   verticalAlign: 'text-bottom',
                 }} />
               )}
@@ -410,8 +410,8 @@ const InfraStatus = () => {
                 style={{
                   display: 'flex', alignItems: 'center', gap: '0.5rem',
                   padding: '0.5rem 0.875rem', borderRadius: '0.75rem',
-                  background: region.active ? 'rgba(0,212,255,0.06)' : 'rgba(255,255,255,0.03)',
-                  border: `1px solid ${region.active ? 'rgba(0,212,255,0.2)' : 'rgba(255,255,255,0.06)'}`,
+                  background: region.active ? 'rgba(34, 197, 94,0.06)' : 'rgba(255,255,255,0.03)',
+                  border: `1px solid ${region.active ? 'rgba(34, 197, 94,0.2)' : 'rgba(255,255,255,0.06)'}`,
                 }}
               >
                 <span style={{
@@ -421,7 +421,7 @@ const InfraStatus = () => {
                   animation: region.active ? 'pulse-green 2s infinite' : 'none',
                   display: 'inline-block',
                 }} />
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.78rem', color: region.active ? '#00d4ff' : 'rgba(107,114,128,1)' }}>
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.78rem', color: region.active ? '#22c55e' : 'rgba(107,114,128,1)' }}>
                   {region.id}
                 </span>
                 <span style={{ fontSize: '0.7rem', color: 'rgba(75,85,99,1)' }}>

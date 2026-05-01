@@ -41,8 +41,8 @@ const stages: PipelineStage[] = [
     icon: <TbTool />,
     tool: 'GitHub Actions',
     toolDetail: 'Docker multi-stage build with layer caching. ARM64 + AMD64 manifest.',
-    color: '#00d4ff',
-    glowColor: 'rgba(0,212,255,0.5)',
+    color: '#22c55e',
+    glowColor: 'rgba(34, 197, 94,0.5)',
     status: 'success',
     duration: '2m 14s',
   },
@@ -85,8 +85,8 @@ const stages: PipelineStage[] = [
     icon: <TbRocket />,
     tool: 'AWS EC2 / ECS',
     toolDetail: 'Blue/green deployment via ECS. Health checks before traffic cut-over. Terraform managed.',
-    color: '#a855f7',
-    glowColor: 'rgba(168,85,247,0.5)',
+    color: '#4ade80',
+    glowColor: 'rgba(74, 222, 128,0.5)',
     status: 'running',
     duration: '4m 21s',
   },
@@ -96,8 +96,8 @@ const stages: PipelineStage[] = [
     icon: <TbActivity />,
     tool: 'CloudWatch + Grafana',
     toolDetail: 'AWS CloudWatch metrics, Grafana dashboards, Prometheus scraping. AlertManager for on-call.',
-    color: '#f472b6',
-    glowColor: 'rgba(244,114,182,0.5)',
+    color: '#86efac',
+    glowColor: 'rgba(134, 239, 172,0.5)',
     status: 'pending',
     duration: '—',
   },
@@ -137,7 +137,7 @@ const DevOpsFlow = () => {
           transform: 'translate(-50%, -50%)',
           width: '600px',
           height: '300px',
-          background: 'radial-gradient(ellipse, rgba(0,212,255,0.06) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse, rgba(34, 197, 94,0.06) 0%, transparent 70%)',
           pointerEvents: 'none',
         }}
       />
@@ -155,11 +155,11 @@ const DevOpsFlow = () => {
               style={{
                 fontFamily: 'var(--font-mono)',
                 fontSize: '0.75rem',
-                color: '#00d4ff',
+                color: '#22c55e',
                 letterSpacing: '0.15em',
                 padding: '0.25rem 0.75rem',
-                background: 'rgba(0,212,255,0.08)',
-                border: '1px solid rgba(0,212,255,0.2)',
+                background: 'rgba(34, 197, 94,0.08)',
+                border: '1px solid rgba(34, 197, 94,0.2)',
                 borderRadius: '999px',
               }}
             >
@@ -204,7 +204,7 @@ const DevOpsFlow = () => {
                       if (isActive || isHovered) {
                         return `linear-gradient(140deg, ${stage.color}18 0%, rgba(255,255,255,0.03) 60%, ${stage.color}10 100%)`;
                       }
-                      return 'linear-gradient(140deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 60%, rgba(168,85,247,0.05) 100%)';
+                      return 'linear-gradient(140deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 60%, rgba(74, 222, 128,0.05) 100%)';
                     })(),
                     backdropFilter: 'blur(20px)',
                     WebkitBackdropFilter: 'blur(20px)',
@@ -289,7 +289,7 @@ const DevOpsFlow = () => {
                     <div style={{
                       position: 'absolute', top: '50%', left: 0, right: 0,
                       height: '1px',
-                      background: 'linear-gradient(90deg, rgba(0,212,255,0.4), rgba(168,85,247,0.4))',
+                      background: 'linear-gradient(90deg, rgba(34, 197, 94,0.4), rgba(74, 222, 128,0.4))',
                       transform: 'translateY(-50%)',
                     }} />
                     {/* Flow particle */}
@@ -317,7 +317,7 @@ const DevOpsFlow = () => {
                       position: 'absolute', right: 0, top: '50%',
                       transform: 'translateY(-50%)',
                       width: 0, height: 0,
-                      borderLeft: '5px solid rgba(168,85,247,0.6)',
+                      borderLeft: '5px solid rgba(74, 222, 128,0.6)',
                       borderTop: '3px solid transparent',
                       borderBottom: '3px solid transparent',
                     }} />
@@ -340,7 +340,7 @@ const DevOpsFlow = () => {
               style={{
                 marginTop: '1.5rem',
                 padding: '1.5rem 2rem',
-                background: 'linear-gradient(140deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 60%, rgba(168,85,247,0.05) 100%)',
+                background: 'linear-gradient(140deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 60%, rgba(74, 222, 128,0.05) 100%)',
                 backdropFilter: 'blur(24px)',
                 WebkitBackdropFilter: 'blur(24px)',
                 border: `1px solid ${selectedStage.color}44`,

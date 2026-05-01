@@ -55,7 +55,7 @@ const MouseTracker3D = () => {
         style={{
           width: '200px',
           height: '200px',
-          background: 'radial-gradient(circle, rgba(0, 212, 255, 0.15) 0%, rgba(0, 212, 255, 0.05) 50%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(34, 197, 94, 0.15) 0%, rgba(34, 197, 94, 0.05) 50%, transparent 70%)',
           x: cursorX,
           y: cursorY,
         }}

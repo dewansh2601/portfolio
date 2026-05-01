@@ -162,7 +162,7 @@ function DataFlowLines() {
           <group key={index}>
             <Line
               points={points}
-              color="#00d4ff"
+              color="#22c55e"
               lineWidth={2}
               transparent
               opacity={0.5}
@@ -171,8 +171,8 @@ function DataFlowLines() {
             <mesh position={line.start}>
               <sphereGeometry args={[0.1, 8, 8]} />
               <meshStandardMaterial
-                color="#00d4ff"
-                emissive="#00d4ff"
+                color="#22c55e"
+                emissive="#22c55e"
                 emissiveIntensity={1}
               />
             </mesh>
@@ -198,7 +198,7 @@ function CloudPlatform() {
       <cylinderGeometry args={[8, 10, 0.5, 32]} />
       <meshStandardMaterial
         color="#1a1a24"
-        emissive="#a855f7"
+        emissive="#4ade80"
         emissiveIntensity={0.1}
         metalness={0.8}
         roughness={0.2}
@@ -232,10 +232,10 @@ export default function CloudInfrastructure3D() {
     {
       yOffset: -4,
       nodes: [
-        { position: [3, 0, 3], label: 'VPC', color: '#00d4ff', type: 'network' },
-        { position: [-3, 0, -3], label: 'CloudFront', color: '#00d4ff', type: 'network' },
-        { position: [3, 0, -3], label: 'Route53', color: '#00d4ff', type: 'network' },
-        { position: [-3, 0, 3], label: 'ALB', color: '#00d4ff', type: 'network' },
+        { position: [3, 0, 3], label: 'VPC', color: '#22c55e', type: 'network' },
+        { position: [-3, 0, -3], label: 'CloudFront', color: '#22c55e', type: 'network' },
+        { position: [3, 0, -3], label: 'Route53', color: '#22c55e', type: 'network' },
+        { position: [-3, 0, 3], label: 'ALB', color: '#22c55e', type: 'network' },
       ],
     },
   ];
@@ -244,8 +244,8 @@ export default function CloudInfrastructure3D() {
     <div className="w-full h-[600px] lg:h-[700px]">
       <Canvas camera={{ position: [15, 8, 15], fov: 60 }}>
         <ambientLight intensity={0.4} />
-        <pointLight position={[10, 10, 10]} intensity={1} color="#00d4ff" />
-        <pointLight position={[-10, -10, -10]} intensity={0.5} color="#a855f7" />
+        <pointLight position={[10, 10, 10]} intensity={1} color="#22c55e" />
+        <pointLight position={[-10, -10, -10]} intensity={0.5} color="#4ade80" />
         <spotLight
           position={[0, 20, 0]}
           intensity={1.5}
@@ -269,8 +269,8 @@ export default function CloudInfrastructure3D() {
         <mesh position={[0, 0, 0]}>
           <sphereGeometry args={[1, 32, 32]} />
           <meshStandardMaterial
-            color="#a855f7"
-            emissive="#a855f7"
+            color="#4ade80"
+            emissive="#4ade80"
             emissiveIntensity={0.8}
             transparent
             opacity={0.6}

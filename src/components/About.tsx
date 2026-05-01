@@ -142,7 +142,7 @@ const About = () => {
         >
           <AnimatedHeading text="About Me" />
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Get to know more about my background, journey, and what drives me as a DevOps engineer.
+            A quick look at my background, how I got into infrastructure, and the path that brought me here.
           </p>
         </motion.div>
 

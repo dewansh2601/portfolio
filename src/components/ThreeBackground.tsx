@@ -79,9 +79,9 @@ function FloatingGeometry() {
       <mesh ref={meshRef} position={[3, 0, -5]}>
         <icosahedronGeometry args={[1, 0]} />
         <meshStandardMaterial
-          color="#a855f7"
+          color="#4ade80"
           wireframe
-          emissive="#a855f7"
+          emissive="#4ade80"
           emissiveIntensity={0.5}
         />
       </mesh>

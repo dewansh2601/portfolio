@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: 'Dewansh Mishra' }],
   icons: {
-    icon: process.env.NODE_ENV === 'production' ? '/portfolio/favicon.svg' : '/favicon.svg',
+    icon: '/favicon.svg',
   },
   openGraph: {
     title: 'Dewansh Mishra | DevOps & Cloud Engineer',
@@ -77,7 +77,7 @@ export default function RootLayout({
               '@type': 'Person',
               name: 'Dewansh Mishra',
               jobTitle: 'DevOps & Cloud Engineer',
-              url: 'https://dewansh2601.github.io/portfolio/',
+              url: 'https://dewansh.in',
               sameAs: [
                 'https://github.com/dewansh2601',
                 'https://www.linkedin.com/in/dewansh-mis/',

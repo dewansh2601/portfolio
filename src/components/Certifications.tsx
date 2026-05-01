@@ -191,7 +191,7 @@ const Certifications = () => {
                 {cert.date === 'In Progress' ? (
                   <div
                     className="absolute top-3 right-[-35px] w-[120px] text-center text-[9px] font-bold py-1.5 rotate-45 tracking-wider"
-                    style={{ background: '#a855f7', color: '#fff', boxShadow: '0 2px 12px rgba(168,85,247,0.4)' }}
+                    style={{ background: '#4ade80', color: '#fff', boxShadow: '0 2px 12px rgba(74, 222, 128,0.4)' }}
                   >
                     IN PROGRESS
                   </div>

@@ -29,7 +29,7 @@ function NetworkNodes() {
           (Math.random() - 0.5) * 0.02,
           (Math.random() - 0.5) * 0.02
         ),
-        color: ['#00d4ff', '#a855f7', '#f472b6', '#22d3ee'][Math.floor(Math.random() * 4)],
+        color: ['#22c55e', '#4ade80', '#86efac', '#22d3ee'][Math.floor(Math.random() * 4)],
       });
     }
     return temp;
@@ -69,7 +69,7 @@ function NetworkNodes() {
 
           // Color based on distance (closer = brighter)
           const opacity = 1 - distance / 5;
-          const color = new THREE.Color('#00d4ff');
+          const color = new THREE.Color('#22c55e');
           lineColors.push(color.r, color.g, color.b, opacity);
           lineColors.push(color.r, color.g, color.b, opacity);
         }
@@ -115,7 +115,7 @@ function NetworkNodes() {
         </bufferGeometry>
         <pointsMaterial
           size={0.3}
-          color="#00d4ff"
+          color="#22c55e"
           transparent
           opacity={0.8}
           sizeAttenuation
@@ -188,7 +188,7 @@ function DataFlow() {
       </bufferGeometry>
       <pointsMaterial
         size={0.15}
-        color="#a855f7"
+        color="#4ade80"
         transparent
         opacity={0.6}
         sizeAttenuation

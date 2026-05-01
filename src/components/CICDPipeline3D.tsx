@@ -143,8 +143,8 @@ function ConnectionPipe({ start, end }: { start: [number, number, number]; end: 
       rotation={[Math.PI / 2, 0, Math.atan2(direction.z, direction.x)]}
     >
       <meshStandardMaterial
-        color="#00d4ff"
-        emissive="#00d4ff"
+        color="#22c55e"
+        emissive="#22c55e"
         emissiveIntensity={0.5}
         transparent
         opacity={0.5}
@@ -205,8 +205,8 @@ export default function CICDPipeline3D() {
     <div className="w-full h-[400px] lg:h-[500px]">
       <Canvas camera={{ position: [0, 6, 12], fov: 60 }}>
         <ambientLight intensity={0.5} />
-        <pointLight position={[10, 10, 10]} intensity={1} color="#00d4ff" />
-        <pointLight position={[-10, 10, 10]} intensity={0.8} color="#a855f7" />
+        <pointLight position={[10, 10, 10]} intensity={1} color="#22c55e" />
+        <pointLight position={[-10, 10, 10]} intensity={0.8} color="#4ade80" />
         <spotLight
           position={[0, 10, 5]}
           intensity={1}

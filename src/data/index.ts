@@ -31,30 +31,25 @@ export const navItems: NavItem[] = [
 export const aboutData: AboutData = {
   name: 'Dewansh Mishra',
   title: 'DevOps & Cloud Engineer',
-  bio: `Passionate DevOps & Cloud Engineer with expertise in building scalable,
-  secure, and automated cloud infrastructure. I specialize in CI/CD pipelines,
-  containerization, and infrastructure as code. My journey from BSc CS through MCA
-  and specialized IACSD (DITISS) training to DevOps has equipped me with a strong
-  foundation in both development and operations, enabling me to bridge the gap between
-  software development and IT operations.`,
+  bio: `Hey, I'm Dewansh. I'm a DevOps & Cloud Engineer who loves building robust, scalable infrastructure. I started out in Computer Science, and eventually found my niche in cloud automation and operations. Whether it's cutting down Docker build times, writing Terraform modules, or deploying HIPAA-compliant pipelines, I really enjoy bridging the gap between development and operations to make systems run smoothly and securely.`,
   journey: [
     {
       period: '2018 - 2021',
       title: 'Bachelor of Science in Computer Science (BSc CS)',
       institution: 'Pt. S.N. Shukla University , Shahdol MP',
-      description: 'Built strong foundation in computer science fundamentals, programming, and core IT concepts.',
+      description: 'Where I wrote my first lines of code and learned the core fundamentals of software engineering and systems.',
     },
     {
       period: '2021 - 2023',
       title: 'Master of Computer Applications (MCA)',
       institution: 'Madhav Institute of Technology and Science, Gwalior MP',
-      description: 'Advanced studies in software development, system design, and enterprise application development.',
+      description: 'Dived deeper into enterprise architecture, system design, and the broader software development lifecycle.',
     },
     {
       period: 'Aug 2024 - Mar 2025',
       title: 'PG Diploma in IT Infrastructure & Security (DITISS)',
       institution: 'IACSD Pune MH',
-      description: 'Specialized in cybersecurity, network infrastructure, and cloud computing. Gained hands-on experience with enterprise-grade tools and technologies.',
+      description: 'This is where I truly pivoted into infrastructure. Got my hands dirty with real-world enterprise tooling, cloud computing, and network security.',
     },
   ],
   email: 'dewanshmishra01@gmail.com',
@@ -154,7 +149,7 @@ export const experiences: Experience[] = [
     title: 'Associate DevOps Engineer',
     company: 'Mindbowser Inc.',
     location: 'Pune, India',
-    description: 'Architecting and managing production cloud infrastructure on AWS, building DevSecOps pipelines, and leading containerization initiatives for healthcare and SaaS clients.',
+    description: 'I architect and manage production cloud infrastructure on AWS, build DevSecOps pipelines, and lead containerization initiatives, primarily focusing on healthcare and SaaS clients.',
     achievements: [
       'Cut Docker build times from 24+ min to ~4 min by designing a hybrid ARM64 build strategy on GitHub Actions for a NestJS monorepo (3 apps)',
       'Configured EKS + Istio production stack with AWS Global Accelerator across 3 regions (us-east-1, ap-northeast-1, ap-east-1); resolved ALB health check misconfiguration restoring GA endpoint health',

@@ -18,10 +18,10 @@ const config: Config = {
           500: '#2a2a38',
         },
         neon: {
-          blue: '#00d4ff',
-          purple: '#a855f7',
-          pink: '#f472b6',
-          cyan: '#22d3ee',
+          blue: '#22c55e',
+          purple: '#4ade80',
+          pink: '#86efac',
+          cyan: '#16a34a',
         },
         glass: {
           light: 'rgba(255, 255, 255, 0.05)',
@@ -53,11 +53,11 @@ const config: Config = {
         },
         pulseGlow: {
           '0%, 100%': { 
-            boxShadow: '0 0 20px rgba(0, 212, 255, 0.3)',
+            boxShadow: '0 0 20px rgba(34, 197, 94, 0.3)',
             opacity: '1'
           },
           '50%': { 
-            boxShadow: '0 0 40px rgba(0, 212, 255, 0.6)',
+            boxShadow: '0 0 40px rgba(34, 197, 94, 0.6)',
             opacity: '0.8'
           },
         },
@@ -84,9 +84,9 @@ const config: Config = {
       },
       // Box shadow for glow effects
       boxShadow: {
-        'neon-blue': '0 0 20px rgba(0, 212, 255, 0.5)',
-        'neon-purple': '0 0 20px rgba(168, 85, 247, 0.5)',
-        'neon-pink': '0 0 20px rgba(244, 114, 182, 0.5)',
+        'neon-blue': '0 0 20px rgba(34, 197, 94, 0.5)',
+        'neon-purple': '0 0 20px rgba(74, 222, 128, 0.5)',
+        'neon-pink': '0 0 20px rgba(134, 239, 172, 0.5)',
         'glass': '0 8px 32px rgba(0, 0, 0, 0.3)',
       },
       // Background size for gradient animations
